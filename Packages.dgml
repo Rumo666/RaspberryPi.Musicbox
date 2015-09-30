@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph GraphDirection="LeftToRight" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="AngularJS.Core 1.3.8" Category="Package" Bounds="791.761287027995,-248.074529064941,127.636666666667,25.96" Label="AngularJS.Core 1.3.8" UseManualLocation="True" />
+    <Node Id="Common.Logging 3.0.0" Category="Package" Bounds="1206.00039101064,174.404125097525,143.026666666667,25.96" Label="Common.Logging 3.0.0" UseManualLocation="True" />
+    <Node Id="Common.Logging.Core 3.0.0" Category="Package" Bounds="1200.16103900055,230.364225351838,170.536666666667,25.96" Label="Common.Logging.Core 3.0.0" UseManualLocation="True" />
+    <Node Id="Common.Logging.Log4Net1213 3.0.0" Category="Package" Bounds="1212.66922663839,-127.397973932909,217.043333333333,25.96" Label="Common.Logging.Log4Net1213 3.0.0" UseManualLocation="True" />
+    <Node Id="Core" Category="Project" Bounds="1206.12666666667,55.9599999999999,50,25.96" Label="Core" />
+    <Node Id="Device.RaspberryPi" Category="Project" Bounds="1317.975,55.9599999999999,120.303333333333,25.96" Label="Device.RaspberryPi" />
+    <Node Id="Device.Web" Category="Project" Bounds="793.001974766083,-35.0620290116008,82.3033333333334,25.96" Label="Device.Web" UseManualLocation="True" />
+    <Node Id="Microsoft.AspNet.WebApi.Client 5.2.3" Category="Package" Bounds="212.484440980438,410.758322941315,217.896666666667,25.96" Label="Microsoft.AspNet.WebApi.Client 5.2.3" UseManualLocation="True" />
+    <Node Id="Microsoft.AspNet.WebApi.Core 5.2.3" Category="Package" Bounds="215.217774313771,354.798322941315,212.43,25.96" Label="Microsoft.AspNet.WebApi.Core 5.2.3" UseManualLocation="True" />
+    <Node Id="Microsoft.AspNet.WebApi.Owin 5.2.3" Category="Package" Bounds="316.964440980438,298.838322941315,214.936666666667,25.96" Label="Microsoft.AspNet.WebApi.Owin 5.2.3" UseManualLocation="True" />
+    <Node Id="Microsoft.AspNet.WebApi.OwinSelfHost 5.2.3" Category="Package" Bounds="643.00980839256,91.214964177768,258.96,25.96" Label="Microsoft.AspNet.WebApi.OwinSelfHost 5.2.3" UseManualLocation="True" />
+    <Node Id="Microsoft.Owin 3.0.1" Category="Package" Bounds="583.63702303653,395.742336537984,128.29,25.96" Label="Microsoft.Owin 3.0.1" UseManualLocation="True" />
+    <Node Id="Microsoft.Owin.FileSystems 3.0.1" Category="Package" Bounds="937.334338898253,351.308303495483,191.886666666667,25.96" Label="Microsoft.Owin.FileSystems 3.0.1" UseManualLocation="True" />
+    <Node Id="Microsoft.Owin.Host.HttpListener 3.0.1" Category="Package" Bounds="353.642429575613,95.4346066734866,223.14,25.96" Label="Microsoft.Owin.Host.HttpListener 3.0.1" UseManualLocation="True" />
+    <Node Id="Microsoft.Owin.Hosting 3.0.1" Category="Package" Bounds="629.897738806819,307.73919546233,172.363333333333,25.96" Label="Microsoft.Owin.Hosting 3.0.1" UseManualLocation="True" />
+    <Node Id="Microsoft.Owin.StaticFiles 3.0.1" Category="Package" Bounds="871.275012110264,226.036791054944,182.996666666667,25.96" Label="Microsoft.Owin.StaticFiles 3.0.1" UseManualLocation="True" />
+    <Node Id="Newtonsoft.Json 6.0.8" Category="Package" Bounds="253.706107647105,466.718322941315,135.453333333333,25.96" Label="Newtonsoft.Json 6.0.8" UseManualLocation="True" />
+    <Node Id="Owin 1.0" Category="Package" Bounds="718.561228890879,566.523592059077,66.2433333333333,25.96" Label="Owin 1.0" UseManualLocation="True" />
+    <Node Id="Player.Dummy" Category="Project" Bounds="1078.98998128255,53.5738474568685,96.2733333333333,25.96" Label="Player.Dummy" />
+    <Node Id="Player.Mpc" Category="Project" Bounds="1469.145,55.9599999999999,77.9633333333334,25.96" Label="Player.Mpc" />
+    <Node Id="Runtime" Category="Project" Bounds="1006.91767110189,-2.3862534570694,64.3433333333332,25.96" Label="Runtime" />
+    <Node Id="angularjs.TypeScript.DefinitelyTyped 3.1.3" Category="Package" Bounds="499.80121507081,-154.98887089641,239.173333333333,25.96" Label="angularjs.TypeScript.DefinitelyTyped 3.1.3" UseManualLocation="True" />
+    <Node Id="jQuery 2.1.3" Category="Package" Bounds="881.409424235026,-192.114429064941,82.8966666666666,25.96" Label="jQuery 2.1.3" UseManualLocation="True" />
+    <Node Id="jquery.TypeScript.DefinitelyTyped 2.1.9" Category="Package" Bounds="429.082470591903,-236.10230772004,224.253333333333,25.96" Label="jquery.TypeScript.DefinitelyTyped 2.1.9" UseManualLocation="True" />
+    <Node Id="log4net 2.0.3" Category="Package" Bounds="1327.67420000817,-201.827505031503,88.5033333333333,25.96" Label="log4net 2.0.3" UseManualLocation="True" />
+  </Nodes>
+  <Links>
+    <Link Source="Common.Logging 3.0.0" Target="Common.Logging.Core 3.0.0" Category="Package Dependency" Bounds="1279.34976169403,200.364132385254,2.98302324892052,21.0887988854154" />
+    <Link Source="Common.Logging.Log4Net1213 3.0.0" Target="Common.Logging 3.0.0" Category="Package Dependency" Bounds="1280.68127285198,-101.437972564697,38.6311045729346,266.934898698848" />
+    <Link Source="Common.Logging.Log4Net1213 3.0.0" Target="log4net 2.0.3" Category="Package Dependency" Bounds="1330.03869149143,-168.430872544334,27.9701317756462,41.0328999796369" />
+    <Link Source="Core" Target="Common.Logging 3.0.0" Category="Installed Package" Bounds="1236.21014833633,81.919998626709,32.9381386735313,84.1038931285464" />
+    <Link Source="Device.RaspberryPi" Target="Common.Logging 3.0.0" Category="Installed Package" Bounds="1294.3663173384,81.919998626709,72.7344098179065,85.6248341674246" />
+    <Link Source="Device.Web" Target="AngularJS.Core 1.3.8" Category="Installed Package" Bounds="835.459226879303,-213.159715080842,17.9140665444725,178.097683830842" />
+    <Link Source="Device.Web" Target="Common.Logging 3.0.0" Category="Installed Package" Bounds="861.62734293487,-9.10203125,380.275155367167,179.661581155216" />
+    <Link Source="Device.Web" Target="Microsoft.AspNet.WebApi.OwinSelfHost 5.2.3" Category="Installed Package" Bounds="782.777415775654,-9.10203125,45.0377919890262,92.2297275928713" />
+    <Link Source="Device.Web" Target="Microsoft.Owin.StaticFiles 3.0.1" Category="Installed Package" Bounds="844.088562011719,-9.10203170776367,111.870239257813,226.557231903076" />
+    <Link Source="Device.Web" Target="angularjs.TypeScript.DefinitelyTyped 3.1.3" Category="Installed Package" Bounds="650.490430398171,-124.640969010931,160.418528907756,89.5789377609312" />
+    <Link Source="Device.Web" Target="jQuery 2.1.3" Category="Installed Package" Bounds="841.484806994699,-158.317982812449,69.6156974307019,123.255951562449" />
+    <Link Source="Microsoft.AspNet.WebApi.Client 5.2.3" Target="Newtonsoft.Json 6.0.8" Category="Package Dependency" Bounds="321.432765142669,436.718366040039,2.86307647456852E-06,21.0001000000001" />
+    <Link Source="Microsoft.AspNet.WebApi.Core 5.2.3" Target="Microsoft.AspNet.WebApi.Client 5.2.3" Category="Package Dependency" Bounds="321.432769775391,380.758266040039,0,21.0001000000001" />
+    <Link Source="Microsoft.AspNet.WebApi.Owin 5.2.3" Target="Microsoft.AspNet.WebApi.Core 5.2.3" Category="Package Dependency" Bounds="353.231929982374,324.798166040039,47.3099006385884,25.7035570730127" />
+    <Link Source="Microsoft.AspNet.WebApi.Owin 5.2.3" Target="Microsoft.Owin 3.0.1" Category="Package Dependency" Bounds="454.349691447289,324.798166040039,155.259026959312,67.3619839599719" />
+    <Link Source="Microsoft.AspNet.WebApi.Owin 5.2.3" Target="Owin 1.0" Category="Package Dependency" Bounds="440.301059307712,324.798166040039,288.547268426366,236.027149494211" />
+    <Link Source="Microsoft.AspNet.WebApi.OwinSelfHost 5.2.3" Target="Microsoft.AspNet.WebApi.Owin 5.2.3" Category="Package Dependency" Bounds="453.921577603331,117.174965362549,296.808743148289,177.052528540927" />
+    <Link Source="Microsoft.AspNet.WebApi.OwinSelfHost 5.2.3" Target="Microsoft.Owin.Host.HttpListener 3.0.1" Category="Package Dependency" Bounds="585.781569123448,105.973030697907,57.228268523036,0.785878903795052" />
+    <Link Source="Microsoft.AspNet.WebApi.OwinSelfHost 5.2.3" Target="Microsoft.Owin.Hosting 3.0.1" Category="Package Dependency" Bounds="721.730080597745,117.174965362549,47.3781170044174,181.854943358024" />
+    <Link Source="Microsoft.Owin 3.0.1" Target="Owin 1.0" Category="Package Dependency" Bounds="655.678857860744,421.70233581543,83.4294061900192,137.132450129132" />
+    <Link Source="Microsoft.Owin.Hosting 3.0.1" Target="Microsoft.Owin 3.0.1" Category="Package Dependency" Bounds="663.373461547459,333.699192504883,42.6324654418567,54.9331252754198" />
+    <Link Source="Microsoft.Owin.Hosting 3.0.1" Target="Owin 1.0" Category="Package Dependency" Bounds="717.86522021177,333.699192504883,30.8052272417716,223.908425307157" />
+    <Link Source="Microsoft.Owin.StaticFiles 3.0.1" Target="Microsoft.Owin 3.0.1" Category="Package Dependency" Bounds="679.797504283556,251.996792297363,258.883625023054,139.47679644532" />
+    <Link Source="Microsoft.Owin.StaticFiles 3.0.1" Target="Microsoft.Owin.FileSystems 3.0.1" Category="Package Dependency" Bounds="970.078679803509,251.996792297363,51.479515251174,91.4683589418636" />
+    <Link Source="Microsoft.Owin.StaticFiles 3.0.1" Target="Owin 1.0" Category="Package Dependency" Bounds="764.472331684438,251.996792297363,190.253877682746,306.877600819313" />
+    <Link Source="Player.Dummy" Target="Common.Logging 3.0.0" Category="Installed Package" Bounds="1143.28173974775,79.5338463592529,111.060945591354,89.2332331969008" />
+    <Link Source="Player.Mpc" Target="Common.Logging 3.0.0" Category="Installed Package" Bounds="1310.79184253678,81.919998626709,172.062560133588,88.3723077262637" />
+    <Link Source="Runtime" Target="Common.Logging.Log4Net1213 3.0.0" Category="Installed Package" Bounds="1068.37510291313,-97.7916610564851,215.296807840195,95.4075782586259" />
+    <Link Source="Runtime" Target="Microsoft.AspNet.WebApi.OwinSelfHost 5.2.3" Category="Installed Package" Bounds="817.951899446248,21.7973934492137,189.226655449642,66.4361498301257" />
+    <Link Source="Runtime" Target="Microsoft.Owin.StaticFiles 3.0.1" Category="Installed Package" Bounds="969.961916354702,23.5737461853027,64.7908014624127,193.926859635865" />
+    <Link Source="angularjs.TypeScript.DefinitelyTyped 3.1.3" Target="jquery.TypeScript.DefinitelyTyped 2.1.9" Category="Package Dependency" Bounds="559.965175043393,-203.662200078754,46.9123211102155,48.6733270929138" />
+  </Links>
+  <Categories>
+    <Category Id="Installed Package" />
+    <Category Id="Package" />
+    <Category Id="Package Dependency" />
+    <Category Id="Project" />
+  </Categories>
+  <Properties>
+    <Property Id="Bounds" DataType="System.Windows.Rect" />
+    <Property Id="Expression" DataType="System.String" />
+    <Property Id="GraphDirection" DataType="Microsoft.VisualStudio.Diagrams.Layout.LayoutOrientation" />
+    <Property Id="GroupLabel" DataType="System.String" />
+    <Property Id="IsEnabled" DataType="System.Boolean" />
+    <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
+    <Property Id="TargetType" DataType="System.Type" />
+    <Property Id="UseManualLocation" DataType="System.Boolean" />
+    <Property Id="Value" DataType="System.String" />
+    <Property Id="ValueLabel" DataType="System.String" />
+  </Properties>
+  <Styles>
+    <Style TargetType="Node" GroupLabel="Project" ValueLabel="True">
+      <Condition Expression="HasCategory('Project')" />
+      <Setter Property="Background" Value="Blue" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Package Dependency" ValueLabel="True">
+      <Condition Expression="HasCategory('Package Dependency')" />
+      <Setter Property="Background" Value="Yellow" />
+    </Style>
+  </Styles>
+</DirectedGraph>

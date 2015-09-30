@@ -1,0 +1,118 @@
+
+Raspi-Setup
+----------------------------------
+sudo raspi-config
+	Advanced Config -> Enable Serial (UART)
+
+
+Update
+----------------------------------
+sudo apt-get update
+sudo apt-get upgrade
+
+
+Change Hostname (-> "musicbox")
+----------------------------------
+sudo nano /etc/hostname
+sudo /etc/init.d/hostname.sh
+sudo reboot
+
+
+Change password (-> )
+----------------------------------
+passwd
+
+
+Install MONO
+----------------------------------
+sudo apt-key adv –keyserver keyserver.ubuntu.com –recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+echo "deb http://download.mono-project.com/repo/debian wheezy main" | sudo tee /etc/apt/sources.list.d/mono-xamarin.list
+echo "deb http://download.mono-project.com/repo/debian wheezy-apache24-compat main" | sudo tee -a /etc/apt/sources.list.d/mono-xamarin.list
+sudo apt-get install mono-complete
+
+
+Music Folder
+---------------------------------------
+mkdir /home/pi/Music
+sudo chmod a+rwx /home/pi/Music
+
+
+Install MPD (Music Deamon)
+----------------------------------- 
+sudo apt-get install mpd mpc alsa-utils (maybe already installed)
+#sudo chmod g+w /var/lib/mpd/music/ /var/lib/mpd/playlists/
+#sudo chgrp audio /var/lib/mpd/music/ /var/lib/mpd/playlists/
+
+
+MPD Config (sudo nano /etc/mpd.conf)
+------------------------------------------
+music_directory         "/home/pi/Music"
+metadata_to_use "artist,album,title,track,name,genre,date,composer,performer,disc,comment"
+audio_output {
+        type            "alsa"
+        name            "My ALSA Device"
+        device          "hw:0,0"        # optional    hw:0,0 internal, hw:1,0 usb
+#       format          "44100:16:2"    # optional
+#       mixer_device    "default"       # optional
+#       mixer_control   "PCM"           # optional
+#       mixer_index     "0"             # optional
+}
+
+
+Samba Install
+------------------------------------
+sudo apt-get install samba samba-common-bin
+
+
+Smaba Config (sudo nano /etc/samba/smb.conf)
+------------------------------------
+wins support = yes
+[Music]
+ comment=Raspberry Pi Share
+ path=/home/pi/Music
+ browseable=Yes
+ writeable=Yes
+ create mask=0777
+ directory mask=0777
+ public=yes
+
+
+ Autostart programm
+ -----------------------------------
+ sudo chmod +x Jukebox.Runtime.exe
+ sudo nano /etc/rc.local
+
+ add before exit 0
+ sudo mono /home/pi/Desktop/Jukebox/Jukebox.Runtime.exe
+
+ Prozesse
+ -----------------------------------
+ to kill a running programm
+ sudo killall Jukebox.Runtime.exe
+
+ list all
+ ps -ef
+
+
+ Edimax WLAN
+ -----------------------------------
+
+ - disable powersaving
+	- sudo nano /etc/modprobe.d/8192cu.conf
+	- add content:
+		options 8192cu rtw_power_mgnt=0 rtw_enusbss=0
+
+- wlan config
+	- sudo nano /etc/network/interfaces
+	- remove content:
+allow-hotplug wlan0
+iface wlan0 inet manual
+	- add content:
+auto wlan0
+allow-hotplug wlan0
+iface wlan0 inet dhcp
+wpa-ap-scan 1
+wpa-scan-ssid 1
+wpa-ssid "LINMAT-NET"
+wpa-psk "da2Tcra67m2ExrWtVCrC"
+

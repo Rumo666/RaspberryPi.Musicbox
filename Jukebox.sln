@@ -1,0 +1,109 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Runtime", "Runtime\Runtime.csproj", "{0B3B9945-5A49-4746-AF6C-3D3D5D3F5091}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{0E268B66-D328-4A08-83A7-B1A78D4014DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Device.RaspberryPi", "Device.RaspberryPi\Device.RaspberryPi.csproj", "{8079050E-702A-4E9D-9C04-21A979044E2F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Device.Web", "Device.Web\Device.Web.csproj", "{E5B723A9-14AA-4EBA-9705-F1A16E7F1BE9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Player.Dummy", "Player.Dummy\Player.Dummy.csproj", "{565159F5-09D0-4BB8-9341-62E7CFD63C12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Player.Mpc", "Player.Mpc\Player.Mpc.csproj", "{4E579CB8-0E64-46F4-9DA2-508F2058D3E1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C7AAC530-697E-4CA1-949E-A4593A7B122C}"
+	ProjectSection(SolutionItems) = preProject
+		Packages.dgml = Packages.dgml
+		lib\Raspberry.IO.Components.dll = lib\Raspberry.IO.Components.dll
+		lib\Raspberry.IO.dll = lib\Raspberry.IO.dll
+		lib\Raspberry.IO.GeneralPurpose.dll = lib\Raspberry.IO.GeneralPurpose.dll
+		lib\Raspberry.IO.InterIntegratedCircuit.dll = lib\Raspberry.IO.InterIntegratedCircuit.dll
+		lib\Raspberry.IO.Interop.dll = lib\Raspberry.IO.Interop.dll
+		lib\Raspberry.IO.SerialPeripheralInterface.dll = lib\Raspberry.IO.SerialPeripheralInterface.dll
+		lib\Raspberry.System.dll = lib\Raspberry.System.dll
+		RaspberrySetup.txt = RaspberrySetup.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibMpc", "LibMpc\LibMpc.csproj", "{F2BF734E-49F6-447D-B63F-E40E8510768B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Schemas", "Schemas", "{85A3FD6C-E7E7-45BC-BC13-515D5255CAE8}"
+	ProjectSection(SolutionItems) = preProject
+		Schemas\GPIO_Pi2.png = Schemas\GPIO_Pi2.png
+		Schemas\HD44780.pdf = Schemas\HD44780.pdf
+		Schemas\HD44780_LCD_1602_pin.jpg = Schemas\HD44780_LCD_1602_pin.jpg
+		Schemas\Jukebox_Steckplatine.png = Schemas\Jukebox_Steckplatine.png
+		Schemas\MCP3202_21034D.pdf = Schemas\MCP3202_21034D.pdf
+		Schemas\RaspberryPins.txt = Schemas\RaspberryPins.txt
+		Schemas\RFID_RDM6300.pdf = Schemas\RFID_RDM6300.pdf
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0B3B9945-5A49-4746-AF6C-3D3D5D3F5091}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B3B9945-5A49-4746-AF6C-3D3D5D3F5091}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B3B9945-5A49-4746-AF6C-3D3D5D3F5091}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B3B9945-5A49-4746-AF6C-3D3D5D3F5091}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E268B66-D328-4A08-83A7-B1A78D4014DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E268B66-D328-4A08-83A7-B1A78D4014DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E268B66-D328-4A08-83A7-B1A78D4014DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E268B66-D328-4A08-83A7-B1A78D4014DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8079050E-702A-4E9D-9C04-21A979044E2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8079050E-702A-4E9D-9C04-21A979044E2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8079050E-702A-4E9D-9C04-21A979044E2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8079050E-702A-4E9D-9C04-21A979044E2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5B723A9-14AA-4EBA-9705-F1A16E7F1BE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5B723A9-14AA-4EBA-9705-F1A16E7F1BE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5B723A9-14AA-4EBA-9705-F1A16E7F1BE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5B723A9-14AA-4EBA-9705-F1A16E7F1BE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{565159F5-09D0-4BB8-9341-62E7CFD63C12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{565159F5-09D0-4BB8-9341-62E7CFD63C12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{565159F5-09D0-4BB8-9341-62E7CFD63C12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{565159F5-09D0-4BB8-9341-62E7CFD63C12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E579CB8-0E64-46F4-9DA2-508F2058D3E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E579CB8-0E64-46F4-9DA2-508F2058D3E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E579CB8-0E64-46F4-9DA2-508F2058D3E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E579CB8-0E64-46F4-9DA2-508F2058D3E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2BF734E-49F6-447D-B63F-E40E8510768B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2BF734E-49F6-447D-B63F-E40E8510768B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2BF734E-49F6-447D-B63F-E40E8510768B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2BF734E-49F6-447D-B63F-E40E8510768B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 8
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://hdsonix.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Runtime\\Runtime.csproj
+		SccProjectName1 = Runtime
+		SccLocalPath1 = Runtime
+		SccProjectUniqueName2 = Core\\Core.csproj
+		SccProjectName2 = Core
+		SccLocalPath2 = Core
+		SccProjectUniqueName3 = Device.RaspberryPi\\Device.RaspberryPi.csproj
+		SccProjectName3 = Device.RaspberryPi
+		SccLocalPath3 = Device.RaspberryPi
+		SccProjectUniqueName4 = Device.Web\\Device.Web.csproj
+		SccProjectName4 = Device.Web
+		SccLocalPath4 = Device.Web
+		SccProjectUniqueName5 = Player.Mpc\\Player.Mpc.csproj
+		SccProjectName5 = Player.Mpc
+		SccLocalPath5 = Player.Mpc
+		SccProjectUniqueName6 = Player.Dummy\\Player.Dummy.csproj
+		SccProjectName6 = Player.Dummy
+		SccLocalPath6 = Player.Dummy
+		SccProjectUniqueName7 = LibMpc\\LibMpc.csproj
+		SccProjectName7 = LibMpc
+		SccLocalPath7 = LibMpc
+	EndGlobalSection
+EndGlobal

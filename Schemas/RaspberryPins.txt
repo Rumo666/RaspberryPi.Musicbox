@@ -1,0 +1,43 @@
+PIN		Description						Connector
+----------------------------------------------------------------------------------
+#19		Poti - SPI MOSI					4. rechts
+#21		Poti - SPI MSIO					3. rechts
+#23		Poti - SPI CLK					2. rechts
+#24		Poti - SPI Channel				1. links
+
+#12		Button Play/Pause
+#16		Button Previous Track
+#18		Button Next Track
+
+#10		RFID - UART Rx					Pin nach Wiederstand
+
+#31		LCD - Data DB4					HD44780 #11
+#33		LCD - Data DB5					HD44780 #12
+#35		LCD - Data DB6					HD44780 #13
+#37		LCD - Data DB7					HD44780 #14
+#40		LCD - RS (Register Select)		HD44780 #4
+#38		LCD - Clock/E					HD44780 #6
+
+#03		Amp - SDA						SDA (4. links)
+#05		Amp - SCL						SCL (5. links)
+
+#11		ATXRaspi - IN					Boot OK (set high after boot)
+#13		ATXRaspi - OUT					Shutdown Signal ("sudo poweroff" when high)
+
+
+
+HD44780
+-----------------------------------------
+#1		Vss			GND
+#2		Vcc			+5V
+#3		Vee			GND
+#4		RS			GPIO #40
+#5		R/W			GND
+#6		Clock/E		GPIO #38
+
+#11		DB4			GPIO #31
+#12		DB5			GPIO #33
+#13		DB6			GPIO #35
+#14		DB7			GPIO #37
+#15		LED+		Nach Wiederstand +5V
+#16		LED-		GND
