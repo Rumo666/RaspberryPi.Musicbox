@@ -34,13 +34,14 @@ namespace Jukebox.Device.Web
 
         #region IDevice
 
-        public void DisplayText(string line1, string line2, TimeSpan? timeout)
+        public void SetScreen(Screen screen, TimeSpan? timeout)
         {
-            LcdLine1 = line1;
-            LcdLine2 = line2;
+            // todo update to virtual screen system
+            //LcdLine1 = line1;
+            //LcdLine2 = line2;
         }
 
-        public void Process()
+        public void ProcessCycle()
         {
             // nothing to do
         }

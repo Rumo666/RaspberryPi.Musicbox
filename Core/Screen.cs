@@ -8,6 +8,10 @@ namespace Jukebox.Core
 {
     public abstract class Screen
     {
-        public abstract DisplayContent Render(VirtualDisplay display);
+        public const byte LcdCharacterPlay = 0x0;
+        public const byte LcdCharacterPause = 0x1;
+        public const byte LcdCharacterStop = 0x2;
+
+        public abstract DisplayContent Render(ScreenManager display);
     }
 }

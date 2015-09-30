@@ -15,12 +15,12 @@ namespace Jukebox.Device.RaspberryPi
         private readonly RfidConnection _rfidConnection;
         private readonly AmplifierConnection _ampConnection;
         private readonly RaspiAtxConnection _raspiAtxConnection;
-        private readonly VirtualDisplay _virtualDisplay;
+        private readonly ScreenManager _screenManager;
 
         public RaspberryPi(IController controller)
         {
             _controller = controller;
-            _virtualDisplay = new VirtualDisplay(16);
+            _screenManager = new ScreenManager();
 
             // init gpio driver
             var driver = GpioConnectionSettings.DefaultDriver;
@@ -36,7 +36,7 @@ namespace Jukebox.Device.RaspberryPi
 
         #region IDevice
 
-        public void Process()
+        public void ProcessCycle()
         {
             // process volume
             if (_volumeConnection.ReadVolume())
@@ -46,13 +46,13 @@ namespace Jukebox.Device.RaspberryPi
             _rfidConnection.ReadData(id => _controller.PlayByTagId(id));
 
             // update display
-            var content = _virtualDisplay.GetContent();
+            var content = _screenManager.Render();
             _lcdConnection.UpdateDisplay(content.Line1, content.Line2);
         }
 
-        public void DisplayText(string line1, string line2, TimeSpan? timeout)
+        public void SetScreen(Screen screen, TimeSpan? timeout)
         {
-            _virtualDisplay.SetContent(line1, line2, timeout);
+            _screenManager.SetScreen(screen, timeout);
         }
 
         public void SetVolume(byte value)

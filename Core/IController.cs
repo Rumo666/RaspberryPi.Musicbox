@@ -16,6 +16,6 @@ namespace Jukebox.Core
         PlayerStatus GetPlayerState();
         void PlayByTagId(string id);
         bool IsShuttingDown { get; }
-        void Process();
+        void ProcessCycle();
     }
 }

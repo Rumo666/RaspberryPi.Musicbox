@@ -37,48 +37,63 @@ namespace Jukebox.Player.Mpc
         {
             log.Debug(m => m("Send MPD command: next"));
 
-            _mpc.Next();
+            lock (_lock)
+            {
+                _mpc.Next();
+            }
         }
 
         public void Previous()
         {
             log.Debug(m => m("Send MPD command: previous"));
 
-            _mpc.Previous();
+            lock (_lock)
+            {
+                _mpc.Previous();
+            }
         }
 
         public void Stop()
         {
             log.Debug(m => m("Send MPD command: stop"));
 
-            _mpc.Stop();
+            lock (_lock)
+            {
+                _mpc.Stop();
+            }
         }
 
         public void Play()
         {
             log.Debug(m => m("Send MPD command: play"));
 
-            _mpc.Play();
+            lock (_lock)
+            {
+                _mpc.Play();
+            }
         }
 
         public void PlayByTagId(string id)
         {
-            // find songs by card id
-            var songs = _mpc.Find(ScopeSpecifier.Comment, id);
-
-            log.Debug(m => m("Found {0} songs by comment '{1}'", songs.Count, id));
-
-            // clear current playlist
-            log.Debug(m => m("Send MPD command: clear playlist"));
-
-            _mpc.Clear();
-
-            // add songs to playlist
-            foreach (var song in songs)
+            lock (_lock)
             {
-                log.Debug(m => m("Send MPD command: add song '{0}' to playlist", song.File));
+                // find songs by card id
+                var songs = _mpc.Find(ScopeSpecifier.Comment, id);
 
-                _mpc.Add(song.File);
+                log.Debug(m => m("Found {0} songs by comment '{1}'", songs.Count, id));
+
+                // clear current playlist
+                log.Debug(m => m("Send MPD command: clear playlist"));
+
+                _mpc.Clear();
+
+                // add songs to playlist
+                foreach (var song in songs)
+                {
+                    log.Debug(m => m("Send MPD command: add song '{0}' to playlist", song.File));
+
+                    _mpc.Add(song.File);
+                }
             }
 
             Play();
@@ -88,14 +103,20 @@ namespace Jukebox.Player.Mpc
         {
             log.Debug(m => m("Send MPD command: setVol {0}", volume));
 
-            _mpc.SetVol((int)volume);
+            lock (_lock)
+            {
+                _mpc.SetVol((int)volume);
+            }
         }
 
         public void Pause(bool pause)
         {
             log.Debug(m => m("Send MPD command: pause ({0})", pause));
 
-            _mpc.Pause(pause);
+            lock (_lock)
+            {
+                _mpc.Pause(pause);
+            }
         }
 
         public PlayerStatus GetStatus()

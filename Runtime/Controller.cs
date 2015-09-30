@@ -1,5 +1,6 @@
 ﻿using Common.Logging;
 using Jukebox.Core;
+using Jukebox.Core.Screens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,11 +19,7 @@ namespace Jukebox.Runtime
         private byte _currentVolume;
         private const byte _maxVolume = 140;
         private bool _initalized;
-        private DateTime _lastLcdUpdate;
-
-        private const byte _lcdCharacterPlay = 0x0;
-        private const byte _lcdCharacterPause = 0x1;
-        private const byte _lcdCharacterStop = 0x2;
+        private MainScreen _mainScreen = new MainScreen();
 
         public Controller(IPlayer player)
         {
@@ -105,16 +102,16 @@ namespace Jukebox.Runtime
 
         public void Shutdown()
         {
-            if (!_initalized)
+            // do not shutdown before initalized
+            if (!_initalized || IsShuttingDown)
                 return;
 
             log.Info(m => m("Shutdown system triggered"));
 
-            SetLcdText("Shutdown...", "Bye bye..");
-
+            // stop playing
             _player.Stop();
 
-            // trigger shutdown
+            // trigger shutdown on devices
             Do(dev => dev.Shutdown());
 
             IsShuttingDown = true;
@@ -137,21 +134,16 @@ namespace Jukebox.Runtime
 
             // remember current tag
             _currentTagId = id;
-
-            // show album
         }
 
-        public void Process()
+        public void ProcessCycle()
         {
-            // update lcd every second (to prevent exceptions)
-            if (_lastLcdUpdate.AddSeconds(1) < DateTime.Now)
-            {
-                SetLcdWithCurrentState();
-                _lastLcdUpdate = DateTime.Now;
-            }
+            // update main screen
+            _mainScreen.PlayerStatus = GetPlayerState();
+            Do(device => device.SetScreen(_mainScreen, null));
 
             // process devices
-            Do(device => device.Process());
+            Do(device => device.ProcessCycle());
         }
 
         #endregion
@@ -171,8 +163,6 @@ namespace Jukebox.Runtime
             _currentTagId = state.TagId;
 
             SetLcdText("Hallo Noah", "", new TimeSpan(0, 0, 2));
-
-            SetLcdWithCurrentState();
 
             _initalized = true;
         }
@@ -195,24 +185,7 @@ namespace Jukebox.Runtime
         {
             log.Debug(m => m("Update LCD (line1: '{0}', line2: '{1}', timeout: {2}", line1, line2, timeout));
 
-            Do(device => device.DisplayText(line1, line2, timeout));
-        }
-
-        private void SetLcdWithCurrentState()
-        {
-            var status = GetPlayerState();
-
-            var state = (status.State == PlayerStatus.States.Play 
-                ? _lcdCharacterPlay
-                : status.State == PlayerStatus.States.Pause
-                    ? _lcdCharacterPause
-                    : _lcdCharacterStop);
-            
-
-            var line1 = $"{(char)state} {status.TrackNumber}/{status.PlaylistLength} {(int)status.CurrentPosition.TotalMinutes:00}:{status.CurrentPosition.Seconds:00}";
-            var line2 = $"{status.Title}";
-
-            SetLcdText(line1, line2);
+            Do(device => device.SetScreen(new GenericScreen(line1, line2), timeout));
         }
     }
 }

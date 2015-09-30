@@ -40,7 +40,7 @@ namespace Jukebox.Runtime
                 while (!Console.KeyAvailable)
                 {
                     // process
-                    controller.Process();
+                    controller.ProcessCycle();
 
                     // exit if shutdown is triggered
                     if (controller.IsShuttingDown)

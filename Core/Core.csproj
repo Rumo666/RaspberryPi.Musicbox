@@ -46,8 +46,9 @@
   <ItemGroup>
     <Compile Include="DisplayContent.cs" />
     <Compile Include="Screen.cs" />
+    <Compile Include="Screens\GenericScreen.cs" />
     <Compile Include="Screens\MainScreen.cs" />
-    <Compile Include="VirtualDisplay.cs" />
+    <Compile Include="ScreenManager.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="IController.cs" />
     <Compile Include="IDevice.cs" />
