@@ -113,6 +113,6 @@ allow-hotplug wlan0
 iface wlan0 inet dhcp
 wpa-ap-scan 1
 wpa-scan-ssid 1
-wpa-ssid "LINMAT-NET"
-wpa-psk "da2Tcra67m2ExrWtVCrC"
+wpa-ssid ""
+wpa-psk ""
 
