@@ -41,6 +41,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Schemas", "Schemas", "{85A3
 		Schemas\RFID_RDM6300.pdf = Schemas\RFID_RDM6300.pdf
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{FE6499E5-C5CE-43E1-AFF3-77C503190389}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,35 +77,12 @@ Global
 		{F2BF734E-49F6-447D-B63F-E40E8510768B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2BF734E-49F6-447D-B63F-E40E8510768B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2BF734E-49F6-447D-B63F-E40E8510768B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE6499E5-C5CE-43E1-AFF3-77C503190389}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE6499E5-C5CE-43E1-AFF3-77C503190389}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE6499E5-C5CE-43E1-AFF3-77C503190389}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE6499E5-C5CE-43E1-AFF3-77C503190389}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 8
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://hdsonix.visualstudio.com/defaultcollection
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = Runtime\\Runtime.csproj
-		SccProjectName1 = Runtime
-		SccLocalPath1 = Runtime
-		SccProjectUniqueName2 = Core\\Core.csproj
-		SccProjectName2 = Core
-		SccLocalPath2 = Core
-		SccProjectUniqueName3 = Device.RaspberryPi\\Device.RaspberryPi.csproj
-		SccProjectName3 = Device.RaspberryPi
-		SccLocalPath3 = Device.RaspberryPi
-		SccProjectUniqueName4 = Device.Web\\Device.Web.csproj
-		SccProjectName4 = Device.Web
-		SccLocalPath4 = Device.Web
-		SccProjectUniqueName5 = Player.Mpc\\Player.Mpc.csproj
-		SccProjectName5 = Player.Mpc
-		SccLocalPath5 = Player.Mpc
-		SccProjectUniqueName6 = Player.Dummy\\Player.Dummy.csproj
-		SccProjectName6 = Player.Dummy
-		SccLocalPath6 = Player.Dummy
-		SccProjectUniqueName7 = LibMpc\\LibMpc.csproj
-		SccProjectName7 = LibMpc
-		SccLocalPath7 = LibMpc
 	EndGlobalSection
 EndGlobal
