@@ -10,7 +10,7 @@ namespace Jukebox.Core.Screens
     {
         public PlayerStatus PlayerStatus { get; set; }
 
-        public override DisplayContent Render(ScreenManager display)
+        public override ScreenContent Render(ScreenManager display)
         {
             var state = (PlayerStatus.State == PlayerStatus.States.Play
                 ? LcdCharacterPlay
@@ -22,7 +22,7 @@ namespace Jukebox.Core.Screens
             var line1 = $"{(char)state} {PlayerStatus.TrackNumber}/{PlayerStatus.PlaylistLength} {(int)PlayerStatus.CurrentPosition.TotalMinutes:00}:{PlayerStatus.CurrentPosition.Seconds:00}";
             var line2 = $"{PlayerStatus.Title}";
 
-            return new DisplayContent
+            return new ScreenContent
             {
                 Line1 = line1,
                 Line2 = line2

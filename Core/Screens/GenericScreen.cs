@@ -17,9 +17,9 @@ namespace Jukebox.Core.Screens
             _line2 = line2;
         }
 
-        public override DisplayContent Render(ScreenManager display)
+        public override ScreenContent Render(ScreenManager display)
         {
-            return new DisplayContent
+            return new ScreenContent
             {
                 Line1 = _line1,
                 Line2 = _line2

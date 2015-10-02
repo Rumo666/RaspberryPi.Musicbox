@@ -25,7 +25,7 @@ namespace Jukebox.Core
             }
         }
 
-        public DisplayContent Render()
+        public ScreenContent Render()
         {
             var screen = (_stackedScreen != null && _stackedScreenEnd >= DateTime.Now
                 ? _stackedScreen

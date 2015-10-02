@@ -44,8 +44,12 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DisplayContent.cs" />
+    <Compile Include="IDisplay.cs" />
+    <Compile Include="IScreenFilter.cs" />
+    <Compile Include="ScreenContent.cs" />
     <Compile Include="Screen.cs" />
+    <Compile Include="ScreenFilterBlink.cs" />
+    <Compile Include="ScreenFilterScroll.cs" />
     <Compile Include="Screens\GenericScreen.cs" />
     <Compile Include="Screens\MainScreen.cs" />
     <Compile Include="ScreenManager.cs" />

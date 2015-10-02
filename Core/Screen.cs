@@ -12,6 +12,6 @@ namespace Jukebox.Core
         public const byte LcdCharacterPause = 0x1;
         public const byte LcdCharacterStop = 0x2;
 
-        public abstract DisplayContent Render(ScreenManager display);
+        public abstract ScreenContent Render(ScreenManager display);
     }
 }
