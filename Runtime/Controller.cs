@@ -18,7 +18,8 @@ namespace Jukebox.Runtime
         private int _currentSongId;
         private string _currentTagId;
         private byte _currentVolume;
-        private const byte _maxVolume = 140;
+        private const byte _minVolume = 40;
+        private const byte _maxVolume = 120;
         private bool _initalized;
         private MainScreen _mainScreen = new MainScreen();
 
@@ -85,7 +86,7 @@ namespace Jukebox.Runtime
 
             _currentVolume = value;
             var percentage = value / 255f;
-            var volume = (byte)(_maxVolume * percentage);
+            var volume = (byte)((_maxVolume - _minVolume) * percentage + _minVolume);
 
             log.Info(m => m($"Set volume to {volume}"));
 

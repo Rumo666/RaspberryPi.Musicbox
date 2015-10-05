@@ -110,7 +110,10 @@ iface wlan0 inet manual
 	- add content:
 auto wlan0
 allow-hotplug wlan0
-iface wlan0 inet dhcp
+iface wlan0 inet static
+ address 192.168.0.222
+ submask 255.255.255.0
+ gateway 192.168.0.1
 wpa-ap-scan 1
 wpa-scan-ssid 1
 wpa-ssid ""
