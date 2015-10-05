@@ -15,6 +15,7 @@ namespace Jukebox.Runtime
 
         private IEnumerable<IDevice> _devices;
         private readonly IPlayer _player;
+        private int _currentSongId;
         private string _currentTagId;
         private byte _currentVolume;
         private const byte _maxVolume = 140;
@@ -95,7 +96,7 @@ namespace Jukebox.Runtime
                 SetLcdText($"Volume {(int)(percentage * 100)}%", "", new TimeSpan(0, 0, 0, 2));
         }
 
-        public PlayerStatus GetPlayerState()
+        public PlayerStatus GetPlayerStatus()
         {
             return _player.GetStatus();
         }
@@ -138,9 +139,19 @@ namespace Jukebox.Runtime
 
         public void ProcessCycle()
         {
+            var status = GetPlayerStatus();
+
+            // has song changed
+            if (_currentSongId != status.SongId)
+            {
+                _mainScreen.Reset();
+
+                _currentSongId = status.SongId;
+            }
+
             // update main screen
-            _mainScreen.PlayerStatus = GetPlayerState();
-            Do(device => device.SetScreen(_mainScreen, null));
+            _mainScreen.PlayerStatus = status;
+            Do(device => device.ShowScreen(_mainScreen, null));
 
             // process devices
             Do(device => device.ProcessCycle());
@@ -185,7 +196,7 @@ namespace Jukebox.Runtime
         {
             log.Debug(m => m("Update LCD (line1: '{0}', line2: '{1}', timeout: {2}", line1, line2, timeout));
 
-            Do(device => device.SetScreen(new GenericScreen(line1, line2), timeout));
+            Do(device => device.ShowScreen(new GenericScreen(line1, line2), timeout));
         }
     }
 }

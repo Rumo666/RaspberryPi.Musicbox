@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Jukebox.Core
 {
-    public interface IScreenFilter
+    public interface IScreen
     {
-        string Render(string content, IDisplay display);
-        void Reset();
+        ScreenContent Render(IDisplay display);
     }
 }

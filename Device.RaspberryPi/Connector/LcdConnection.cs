@@ -1,4 +1,5 @@
 ﻿using Common.Logging;
+using Jukebox.Core;
 using Raspberry.IO;
 using Raspberry.IO.Components.Displays.Hd44780;
 using Raspberry.IO.GeneralPurpose;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Jukebox.Device.RaspberryPi.Connector
 {
-    public class LcdConnection : IDisposable
+    public class LcdConnection : IDisplay, IDisposable
     {
         private static readonly ILog log = LogManager.GetLogger<LcdConnection>();
         private static readonly object _lockject = new object();
@@ -19,14 +20,18 @@ namespace Jukebox.Device.RaspberryPi.Connector
         private string _line1;
         private string _line2;
 
+        public int Columns => 16;
+
+        public int Rows => 2;
+
         public LcdConnection(IGpioConnectionDriver driver)
         {
             log.Debug(m => m("Init LCD connection"));
 
             var lcdSettings = new Hd44780LcdConnectionSettings
             {
-                ScreenWidth = 16,
-                ScreenHeight = 2,
+                ScreenWidth = Columns,
+                ScreenHeight = Rows,
                 //Encoding = Encoding.ASCII
             };
 

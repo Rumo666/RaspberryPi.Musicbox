@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace Jukebox.Core.Screens
 {
-    public class GenericScreen : Screen
+    public class GenericScreen : IScreen
     {
+        public const byte LcdCharacterPlay = 0x0;
+        public const byte LcdCharacterPause = 0x1;
+        public const byte LcdCharacterStop = 0x2;
+
         private string _line1;
         private string _line2;
 
@@ -17,7 +21,7 @@ namespace Jukebox.Core.Screens
             _line2 = line2;
         }
 
-        public override ScreenContent Render(ScreenManager display)
+        public ScreenContent Render(IDisplay display)
         {
             return new ScreenContent
             {

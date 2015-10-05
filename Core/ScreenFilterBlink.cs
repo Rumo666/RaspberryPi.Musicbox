@@ -12,5 +12,10 @@ namespace Jukebox.Core
         {
             throw new NotImplementedException();
         }
+
+        public void Reset()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

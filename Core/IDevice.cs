@@ -9,7 +9,7 @@ namespace Jukebox.Core
     public interface IDevice
     {
         void ProcessCycle();
-        void SetScreen(Screen screen, TimeSpan? timeout);
+        void ShowScreen(IScreen screen, TimeSpan? timeout);
         void SetVolume(byte value);
         void Initalize();
         void Shutdown();

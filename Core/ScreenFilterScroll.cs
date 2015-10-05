@@ -10,14 +10,19 @@ namespace Jukebox.Core
     {
         private int _position;
         private DateTime _lastPositionChange;
-        private bool _scrollBackward;
+        private int _scrollDirection;
 
-        public ScreenFilterScroll(TimeSpan speed)
+        public ScreenFilterScroll(TimeSpan speed, TimeSpan? pause = null)
         {
             Speed = speed;
+            Pause = pause ?? new TimeSpan(0);
+
+            Reset();
         }
 
         public TimeSpan Speed { get; set; }
+
+        public TimeSpan Pause { get; set; }
 
         public string Render(string content, IDisplay display)
         {
@@ -26,32 +31,45 @@ namespace Jukebox.Core
             {
                 // reset
                 _position = 0;
-                _scrollBackward = false;
+                _scrollDirection = 0;
 
                 return content;
             }
 
-            // update position
-            if (_lastPositionChange.Add(Speed) < DateTime.Now)
+            // update scroll position
+            if (_scrollDirection != 0 && _lastPositionChange.Add(Speed) < DateTime.Now)
             {
-                _position = _position + (_scrollBackward ? -1 : 1);
+                _position = _position + _scrollDirection;
 
-                // revert position
+                // pause at end
                 if (_position < 0)
                 {
                     _position = 0;
-                    _scrollBackward = false;
+                    _scrollDirection = 0;
                 }
                 else if (_position > content.Length - display.Columns)
                 {
                     _position = content.Length - display.Columns;
-                    _scrollBackward = true;
+                    _scrollDirection = 0;
                 }
 
                 _lastPositionChange = DateTime.Now;
             }
 
+            // reverse direction after pause
+            if (_scrollDirection == 0 && _lastPositionChange.Add(Pause) < DateTime.Now)
+            {
+                _scrollDirection = (_position == 0 ? 1 : -1);
+            }
+
             return content.Substring(_position, display.Columns);
+        }
+
+        public void Reset()
+        {
+            _position = 0;
+            _scrollDirection = 0;
+            _lastPositionChange = DateTime.Now;
         }
     }
 }

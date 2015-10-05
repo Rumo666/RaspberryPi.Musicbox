@@ -8,15 +8,16 @@ namespace Jukebox.Core
 {
     public class ScreenManager
     {
-        private Screen _stackedScreen;
-        private Screen _currentScreen;
+        private IScreen _stackedScreen;
+        private IScreen _currentScreen;
         private DateTime _stackedScreenEnd;
 
-        public void SetScreen(Screen screen, TimeSpan? timeout = null)
+        public void SetScreen(IScreen screen, TimeSpan? timeout = null)
         {
             if (timeout == null)
             {
                 _currentScreen = screen;
+                //_stackedScreen = null;
             }
             else
             {
@@ -25,13 +26,11 @@ namespace Jukebox.Core
             }
         }
 
-        public ScreenContent Render()
+        public IScreen GetCurrentScreen()
         {
-            var screen = (_stackedScreen != null && _stackedScreenEnd >= DateTime.Now
+            return (_stackedScreen != null && _stackedScreenEnd >= DateTime.Now
                 ? _stackedScreen
                 : _currentScreen);
-
-            return screen.Render(this);
         }
     }
 }

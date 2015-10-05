@@ -45,9 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IDisplay.cs" />
+    <Compile Include="IScreen.cs" />
     <Compile Include="IScreenFilter.cs" />
     <Compile Include="ScreenContent.cs" />
-    <Compile Include="Screen.cs" />
     <Compile Include="ScreenFilterBlink.cs" />
     <Compile Include="ScreenFilterScroll.cs" />
     <Compile Include="Screens\GenericScreen.cs" />

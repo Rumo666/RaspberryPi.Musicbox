@@ -24,5 +24,6 @@ namespace Jukebox.Core
         public int PlaylistLength { get; set; }
         public int TrackNumber { get; set; }
         public TimeSpan CurrentPosition { get; set; }
+        public int SongId { get; set; }
     }
 }

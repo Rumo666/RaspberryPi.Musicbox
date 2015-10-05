@@ -126,7 +126,7 @@ namespace Jukebox.Player.Mpc
                 var status = _mpc.Status();
                 var song = _mpc.CurrentSong();
 
-                log.Debug($"Get MPD state (state: {status.State}, album: '{song?.Album}', title: '{song?.Title}', artist: '{song?.Artist}', tagId: '{song?.Comment}')");
+                log.Debug($"Get MPD state (state: {status.State}, album: '{song?.Album}', title: '{song?.Title}', artist: '{song?.Artist}', tagId: '{song?.Comment}', songId: {song?.Id})");
 
                 var state = PlayerStatus.States.Play;
                 switch (status.State)
@@ -142,14 +142,15 @@ namespace Jukebox.Player.Mpc
                 return new PlayerStatus
                 {
                     State = state,
-                    Volume = (byte) status.Volume,
+                    Volume = (byte)status.Volume,
                     Album = song?.Album,
                     Title = song?.Title,
                     Artist = song?.Artist,
                     TagId = song?.Comment,
                     TrackNumber = Convert.ToInt32(song?.Track),
                     PlaylistLength = status.PlaylistLength,
-                    CurrentPosition = new TimeSpan(0, 0, status.TimeElapsed)
+                    CurrentPosition = new TimeSpan(0, 0, status.TimeElapsed),
+                    SongId = song?.Id ?? 0
                 };
             }
         }

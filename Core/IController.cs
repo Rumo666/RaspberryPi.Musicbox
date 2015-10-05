@@ -13,7 +13,7 @@ namespace Jukebox.Core
         void PlayPrevious();
         void SetVolume(byte value);
         void Shutdown();
-        PlayerStatus GetPlayerState();
+        PlayerStatus GetPlayerStatus();
         void PlayByTagId(string id);
         bool IsShuttingDown { get; }
         void ProcessCycle();

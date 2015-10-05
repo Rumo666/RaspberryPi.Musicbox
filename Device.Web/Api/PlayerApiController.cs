@@ -51,7 +51,7 @@ namespace Jukebox.Device.Web.Api
         {
             return new DeviceState
             {
-                Player = WebInterface.Controller.GetPlayerState(),
+                Player = WebInterface.Controller.GetPlayerStatus(),
                 LcdLine1 = WebInterface.LcdLine1,
                 LcdLine2 = WebInterface.LcdLine2
             };

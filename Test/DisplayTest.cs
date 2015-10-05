@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Test
 {
     [TestClass]
-    public class UnitTest1
+    public class DisplayTest
     {
         private class MockDisplay : IDisplay
         {
@@ -15,13 +15,13 @@ namespace Test
             public int Rows { get; } = 2;
         }
 
-        private static readonly ILog log = LogManager.GetLogger<UnitTest1>();
+        private static readonly ILog log = LogManager.GetLogger<DisplayTest>();
 
         [TestMethod]
         public void ScreenScrollFilter()
         {
             var end = DateTime.Now.Add(new TimeSpan(0, 0, 0, 30));
-            var filter = new ScreenFilterScroll(new TimeSpan(0, 0, 0, 0, 100));
+            var filter = new ScreenFilterScroll(new TimeSpan(0, 0, 0, 0, 100), new TimeSpan(0, 0, 3));
             var display = new MockDisplay();
             var content = "Das ist ein langer Text der zum Testen dienen soll und nichts sinnvolles enthält";
 

@@ -45,12 +45,13 @@ namespace Jukebox.Device.RaspberryPi
             // process rfid
             _rfidConnection.ReadData(id => _controller.PlayByTagId(id));
 
-            // update display
-            var content = _screenManager.Render();
+            // render display
+            var screen = _screenManager.GetCurrentScreen();
+            var content = screen.Render(_lcdConnection);
             _lcdConnection.UpdateDisplay(content.Line1, content.Line2);
         }
 
-        public void SetScreen(Screen screen, TimeSpan? timeout)
+        public void ShowScreen(IScreen screen, TimeSpan? timeout)
         {
             _screenManager.SetScreen(screen, timeout);
         }

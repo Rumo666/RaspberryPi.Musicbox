@@ -34,7 +34,7 @@ namespace Jukebox.Device.Web
 
         #region IDevice
 
-        public void SetScreen(Screen screen, TimeSpan? timeout)
+        public void ShowScreen(IScreen screen, TimeSpan? timeout)
         {
             // todo update to virtual screen system
             //LcdLine1 = line1;
