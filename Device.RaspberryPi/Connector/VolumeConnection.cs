@@ -13,6 +13,8 @@ namespace Jukebox.Device.RaspberryPi.Connector
         private static readonly ILog log = LogManager.GetLogger<VolumeConnection>();
 
         private readonly Mcp3202SpiConnection _mcpConnection;
+        private readonly decimal[] _buffer = new decimal[4];
+        private int _bufferIndex = 0;
 
         public VolumeConnection(IGpioConnectionDriver driver)
         {
@@ -34,7 +36,17 @@ namespace Jukebox.Device.RaspberryPi.Connector
             
             var value = _mcpConnection.Read(Mcp3202SpiConnection.Channel.A);
 
-            Volume = (byte)((int)(32 * value.Relative) / 32f * 255);
+            // fill buffer
+            _buffer[_bufferIndex++] = value.Relative;
+            if (_bufferIndex == _buffer.Length)
+                _bufferIndex = 0;
+            
+            // calc avg
+            var avgValue = _buffer.Average();
+
+            //log.Info($"rawValue: {value.Relative}, avgValue: {avgValue}");
+
+            Volume = (byte)((int)(32 * avgValue) / 32f * 255);
 
             return currentValue != Volume;
         }

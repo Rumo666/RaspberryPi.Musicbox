@@ -80,8 +80,8 @@ namespace Jukebox.Runtime
 
         public void SetVolume(byte value)
         {
-            // prevent volume bobbing
-            if (value < _currentVolume + 10 && value > _currentVolume - 10)
+            // prevent volume wobble
+            if (value < _currentVolume + 3 && value > _currentVolume - 3)
                 return;
 
             _currentVolume = value;
