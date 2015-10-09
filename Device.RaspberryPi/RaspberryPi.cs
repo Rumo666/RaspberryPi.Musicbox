@@ -36,6 +36,22 @@ namespace Jukebox.Device.RaspberryPi
 
         #region IDevice
 
+        public void Initalize()
+        {
+            // set boot pin to highg
+            _raspiAtxConnection.SetBookOk();
+
+            // wake up amp
+            _ampConnection.SetShutdownState(false);
+        }
+
+        public void Shutdown()
+        {
+            var process = new Process();
+            process.StartInfo.FileName = "poweroff";
+            process.Start();
+        }
+
         public void ProcessCycle()
         {
             // process volume
@@ -59,19 +75,6 @@ namespace Jukebox.Device.RaspberryPi
         public void SetVolume(byte value)
         {
             _ampConnection.SetVolume(value);
-        }
-
-        public void Initalize()
-        {
-            // set boot pin to highg
-            _raspiAtxConnection.SetBookOk();
-        }
-
-        public void Shutdown()
-        {
-            var process = new Process();
-            process.StartInfo.FileName = "poweroff";
-            process.Start();
         }
 
         #endregion

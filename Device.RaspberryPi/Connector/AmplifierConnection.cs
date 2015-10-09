@@ -12,15 +12,22 @@ namespace Jukebox.Device.RaspberryPi.Connector
     public class AmplifierConnection : IDisposable
     {
         private static readonly ILog log = LogManager.GetLogger<AmplifierConnection>();
-        private I2cDeviceConnection _connection;
-        private I2cDriver _i2cDriver;
+        private readonly I2cDeviceConnection _connection;
+        private readonly I2cDriver _i2cDriver;
+        private readonly OutputPinConfiguration _shutdownPin;
+        private readonly GpioConnection _gpioConnection;
 
         public AmplifierConnection()
         {
             log.Debug(m => m("Init amplifier connection"));
 
+            // connect volume via i2c
             _i2cDriver = new I2cDriver(ProcessorPin.Pin2, ProcessorPin.Pin3);
             _connection = _i2cDriver.Connect(0x4b);
+
+            // connect shutdown via gpio
+            _shutdownPin = ConnectorPin.P1Pin36.Output().Revert();
+            _gpioConnection = new GpioConnection(_shutdownPin);
         }
 
         public void SetVolume(byte value)
@@ -32,9 +39,20 @@ namespace Jukebox.Device.RaspberryPi.Connector
             _connection.WriteByte(data);
         }
 
+        public void SetShutdownState(bool enabled)
+        {
+            log.Debug(m => m("Set amplifier shutdown state to {0}", enabled));
+
+            if (enabled)
+                _shutdownPin.Disable();
+            else
+                _shutdownPin.Enable();
+        }
+
         public void Dispose()
         {
             _i2cDriver?.Dispose();
+            _gpioConnection?.Close();
         }
     }
 }

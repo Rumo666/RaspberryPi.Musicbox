@@ -80,6 +80,9 @@ namespace Jukebox.Runtime
 
         public void SetVolume(byte value)
         {
+            if (!_initalized)
+                return;
+
             // prevent volume wobble
             if (value < _currentVolume + 3 && value > _currentVolume - 3)
                 return;
@@ -93,8 +96,7 @@ namespace Jukebox.Runtime
             Do(dev => dev.SetVolume(volume));
 
             // set display
-            if (_initalized)
-                SetLcdText($"Volume {(int)(percentage * 100)}%", "", new TimeSpan(0, 0, 0, 2));
+            SetLcdText($"Volume {(int)(percentage * 100)}%", "", new TimeSpan(0, 0, 0, 2));
         }
 
         public PlayerStatus GetPlayerStatus()

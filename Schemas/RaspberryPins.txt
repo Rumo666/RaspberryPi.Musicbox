@@ -20,6 +20,7 @@ PIN		Description						Connector
 
 #03		Amp - SDA						SDA (4. links)
 #05		Amp - SCL						SCL (5. links)
+#36		Amp - Shutdown					SHDN (7. links)
 
 #11		ATXRaspi - IN					Boot OK (set high after boot)
 #13		ATXRaspi - OUT					Shutdown Signal ("sudo poweroff" when high)

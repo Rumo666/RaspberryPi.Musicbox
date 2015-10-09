@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Jukebox.Core
 {
-    public interface IDevice
+    public interface IDevice : IDisposable
     {
         void ProcessCycle();
         void ShowScreen(IScreen screen, TimeSpan? timeout);

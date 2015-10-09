@@ -20,6 +20,8 @@ namespace Jukebox.Runtime
 
         static void Main(string[] args)
         {
+            IDevice[] devices = null;
+
             try
             {
                 log.Info(m => m("Application start"));
@@ -29,7 +31,7 @@ namespace Jukebox.Runtime
                 var controller = new Controller(player);
                 var pi = new RaspberryPi(controller);
                 //var web = new WebInterface(contoller);
-                var devices = new IDevice[] { pi };
+                devices = new IDevice[] { pi };
 
                 // init controller
                 controller.Initalize(devices);
@@ -51,9 +53,6 @@ namespace Jukebox.Runtime
                     // throttle execution
                     Thread.Sleep(100);
                 }
-
-                pi.Dispose();
-                //web.Dispose();
             }
             catch (Exception ex)
             {
@@ -62,6 +61,14 @@ namespace Jukebox.Runtime
             finally
             {
                 log.Info(m => m("Application terminate"));
+
+                if (devices != null)
+                {
+                    foreach (var device in devices)
+                    {
+                        device.Dispose();
+                    }
+                }
             }
         }
     }
