@@ -32,10 +32,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibMpc", "LibMpc\LibMpc.csp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Schemas", "Schemas", "{85A3FD6C-E7E7-45BC-BC13-515D5255CAE8}"
 	ProjectSection(SolutionItems) = preProject
+		Schemas\adafruit-20w-stereo-audio-amplifier-class-d-max9744.pdf = Schemas\adafruit-20w-stereo-audio-amplifier-class-d-max9744.pdf
+		Schemas\ATXRaspi.jpg = Schemas\ATXRaspi.jpg
+		Schemas\BC337_NPN_Transistor.pdf = Schemas\BC337_NPN_Transistor.pdf
 		Schemas\GPIO_Pi2.png = Schemas\GPIO_Pi2.png
 		Schemas\HD44780.pdf = Schemas\HD44780.pdf
 		Schemas\HD44780_LCD_1602_pin.jpg = Schemas\HD44780_LCD_1602_pin.jpg
 		Schemas\Jukebox_Steckplatine.png = Schemas\Jukebox_Steckplatine.png
+		Schemas\MAX9744.pdf = Schemas\MAX9744.pdf
 		Schemas\MCP3202_21034D.pdf = Schemas\MCP3202_21034D.pdf
 		Schemas\RaspberryPins.txt = Schemas\RaspberryPins.txt
 		Schemas\RFID_RDM6300.pdf = Schemas\RFID_RDM6300.pdf
