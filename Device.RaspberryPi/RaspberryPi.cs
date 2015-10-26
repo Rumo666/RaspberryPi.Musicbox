@@ -59,7 +59,7 @@ namespace Jukebox.Device.RaspberryPi
                 _controller.SetVolume(_volumeConnection.Volume);
 
             // process rfid
-            _rfidConnection.ReadData(id => _controller.PlayByTagId(id));
+            _rfidConnection.ReadData(id => _controller.Play(id));
 
             // render display
             var screen = _screenManager.GetCurrentScreen();

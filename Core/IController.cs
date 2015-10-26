@@ -8,13 +8,14 @@ namespace Jukebox.Core
 {
     public interface IController
     {
+        PlayerStatus PlayerStatus { get; }
+
         void TogglePlay();
         void PlayNext();
         void PlayPrevious();
         void SetVolume(byte value);
         void Shutdown();
-        PlayerStatus GetPlayerStatus();
-        void PlayByTagId(string id);
+        void Play(string id);
         bool IsShuttingDown { get; }
         void ProcessCycle();
     }

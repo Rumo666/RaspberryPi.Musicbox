@@ -51,7 +51,7 @@ namespace Jukebox.Player.Dummy
             _isPlaying = true;
         }
 
-        public void PlayByTagId(string id)
+        public void Play(string id)
         {
             
         }

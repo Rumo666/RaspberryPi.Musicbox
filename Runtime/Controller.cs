@@ -16,12 +16,13 @@ namespace Jukebox.Runtime
         private IEnumerable<IDevice> _devices;
         private readonly IPlayer _player;
         private int _currentSongId;
-        private string _currentTagId;
+        private string _currentAlbumId;
         private byte _currentVolume;
         private const byte _minVolume = 40;
         private const byte _maxVolume = 120;
         private bool _initalized;
-        private MainScreen _mainScreen = new MainScreen();
+        private readonly MainScreen _mainScreen = new MainScreen();
+        private PlayerStatus _playerStatus;
 
         public Controller(IPlayer player)
         {
@@ -29,6 +30,17 @@ namespace Jukebox.Runtime
         }
 
         #region IController
+
+        public PlayerStatus PlayerStatus
+        {
+            get
+            {
+                if (_playerStatus == null)
+                    UpdatePlayerStatus();
+
+                return _playerStatus;
+            }
+        }
 
         public bool IsShuttingDown
         {
@@ -42,13 +54,11 @@ namespace Jukebox.Runtime
 
             log.Info(m => m("Toggle play"));
 
-            var status = _player.GetStatus();
-
-            if (status.State == PlayerStatus.States.Play)
+            if (PlayerStatus.State == PlayerStatus.States.Play)
             {
                 _player.Pause(true);
             }
-            else if (status.State == PlayerStatus.States.Pause)
+            else if (PlayerStatus.State == PlayerStatus.States.Pause)
             {
                 _player.Pause(false);
             }
@@ -61,6 +71,10 @@ namespace Jukebox.Runtime
         public void PlayNext()
         {
             if (!_initalized)
+                return;
+
+            // do not play next when last song is playing
+            if (PlayerStatus.TrackNumber == PlayerStatus.PlaylistLength)
                 return;
 
             log.Info(m => m("Play next song"));
@@ -99,11 +113,6 @@ namespace Jukebox.Runtime
             SetLcdText($"Volume {(int)(percentage * 100)}%", "", new TimeSpan(0, 0, 0, 2));
         }
 
-        public PlayerStatus GetPlayerStatus()
-        {
-            return _player.GetStatus();
-        }
-
         public void Shutdown()
         {
             // do not shutdown before initalized
@@ -121,12 +130,12 @@ namespace Jukebox.Runtime
             IsShuttingDown = true;
         }
 
-        public void PlayByTagId(string id)
+        public void Play(string id)
         {
             log.Info(m => m("Play by tag id '{0}'", id));
 
             // ignore if its same as current tag
-            if (_currentTagId == id)
+            if (_currentAlbumId == id)
             {
                 log.Debug(m => m("Ignore tag because its already playing"));
 
@@ -134,26 +143,27 @@ namespace Jukebox.Runtime
             }
 
             // play by id
-            _player.PlayByTagId(id);
+            _player.Play(id);
 
             // remember current tag
-            _currentTagId = id;
+            _currentAlbumId = id;
         }
 
         public void ProcessCycle()
         {
-            var status = GetPlayerStatus();
+            // update player status
+            UpdatePlayerStatus();
 
             // has song changed
-            if (_currentSongId != status.SongId)
+            if (_currentSongId != PlayerStatus.SongId)
             {
                 _mainScreen.Reset();
 
-                _currentSongId = status.SongId;
+                _currentSongId = PlayerStatus.SongId;
             }
 
             // update main screen
-            _mainScreen.PlayerStatus = status;
+            _mainScreen.PlayerStatus = PlayerStatus;
             Do(device => device.ShowScreen(_mainScreen, null));
 
             // process devices
@@ -174,7 +184,7 @@ namespace Jukebox.Runtime
             // get current player state
             var state = _player.GetStatus();
 
-            _currentTagId = state.TagId;
+            _currentAlbumId = state.TagId;
 
             SetLcdText("Hallo Noah", "", new TimeSpan(0, 0, 2));
 
@@ -200,6 +210,11 @@ namespace Jukebox.Runtime
             log.Debug(m => m("Update LCD (line1: '{0}', line2: '{1}', timeout: {2}", line1, line2, timeout));
 
             Do(device => device.ShowScreen(new GenericScreen(line1, line2), timeout));
+        }
+
+        private void UpdatePlayerStatus()
+        {
+            _playerStatus = _player.GetStatus();
         }
     }
 }

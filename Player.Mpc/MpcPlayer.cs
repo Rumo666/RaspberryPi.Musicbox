@@ -73,7 +73,7 @@ namespace Jukebox.Player.Mpc
             }
         }
 
-        public void PlayByTagId(string id)
+        public void Play(string id)
         {
             lock (_lock)
             {

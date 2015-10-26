@@ -12,7 +12,7 @@ namespace Jukebox.Core
         void Previous();
         void Stop();
         void Play();
-        void PlayByTagId(string id);
+        void Play(string id);
         void Pause(bool pause);
         void SetVolume(byte volume);
         PlayerStatus GetStatus();
