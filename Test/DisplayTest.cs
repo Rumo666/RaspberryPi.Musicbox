@@ -13,13 +13,13 @@ namespace Test
         private class MockDisplay : IDisplay
         {
             public int Columns { get; } = 16;
-            public int Rows { get; } = 2;
+            public int Rows { get; } = 20;
         }
 
         private static readonly ILog log = LogManager.GetLogger<DisplayTest>();
 
         [TestMethod]
-        public void ScreenScrollFilter()
+        public void ScrollRenderer()
         {
             var end = DateTime.Now.Add(new TimeSpan(0, 0, 0, 30));
             var filter = new ScrollRenderer(new TimeSpan(0, 0, 0, 0, 100), new TimeSpan(0, 0, 3));
@@ -38,6 +38,21 @@ namespace Test
                     break;
             }
 
+        }
+
+        [TestMethod]
+        public void LineBreakRenderer()
+        {
+            var filter = new LineBreakRenderer();
+            var display = new MockDisplay();
+            var content = "Das ist ein langer Text der zum Testen dienen soll und nichts sinnvolles enthält aber umbrechen sollte";
+
+            var output = filter.Render(content, display);
+
+            foreach (var row in output.Rows)
+            {
+                log.Debug(row);
+            }
         }
     }
 }

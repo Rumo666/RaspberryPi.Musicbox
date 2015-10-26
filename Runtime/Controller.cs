@@ -162,7 +162,9 @@ namespace Jukebox.Runtime
             // has album changes
             if (_currentAlbumId != PlayerStatus.TagId)
             {
+                var albumScreen = new AlbumScreen(PlayerStatus);
 
+                Do(device => device.ShowScreen(albumScreen, new TimeSpan(0, 0, 0, 3)));
 
                 _currentAlbumId = PlayerStatus.TagId;
             }

@@ -30,8 +30,8 @@ namespace Jukebox.Core.Screens
                     : ScreenContent.LcdCharacterStop);
 
 
-            _content.AddRow($"{(char)state} {PlayerStatus.TrackNumber}/{PlayerStatus.PlaylistLength} {(int)PlayerStatus.CurrentPosition.TotalMinutes:00}:{PlayerStatus.CurrentPosition.Seconds:00}");
-            _content.AddRow(_scrollRenderer.Render($"{PlayerStatus.Title}", display));
+            _content.AppendRow($"{(char)state} {PlayerStatus.TrackNumber}/{PlayerStatus.PlaylistLength} {(int)PlayerStatus.CurrentPosition.TotalMinutes:00}:{PlayerStatus.CurrentPosition.Seconds:00}");
+            _content.AppendRow(_scrollRenderer.Render($"{PlayerStatus.Title}", display));
 
             return _content;
         }

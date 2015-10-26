@@ -26,9 +26,19 @@ namespace Jukebox.Core
         public IEnumerable<string> Rows => _rows;
         public int LineCount => _rows.Count;
 
-        public void AddRow(string content)
+        public void AppendRow(string content)
         {
             _rows.Add(content);
+        }
+
+        public void AppendContent(string content)
+        {
+            var temp = GetRow(_rows.Count - 1) + content;
+
+            if (_rows.Count == 0)
+                _rows.Add(temp);
+            else
+                _rows[_rows.Count - 1] = temp;
         }
 
         public string GetRow(int index)
