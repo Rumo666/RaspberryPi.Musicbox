@@ -6,9 +6,42 @@ using System.Threading.Tasks;
 
 namespace Jukebox.Core
 {
-    public struct ScreenContent
+    public class ScreenContent
     {
-        public string Line1 { get; set; }
-        public string Line2 { get; set; }
+        public const byte LcdCharacterPlay = 0x0;
+        public const byte LcdCharacterPause = 0x1;
+        public const byte LcdCharacterStop = 0x2;
+
+        private readonly List<string> _rows = new List<string>();
+
+        public ScreenContent()
+        {
+        }
+
+        public ScreenContent(IEnumerable<string> rows)
+        {
+            _rows.AddRange(rows);
+        }
+
+        public IEnumerable<string> Rows => _rows;
+        public int LineCount => _rows.Count;
+
+        public void AddRow(string content)
+        {
+            _rows.Add(content);
+        }
+
+        public string GetRow(int index)
+        {
+            if (index >= _rows.Count)
+                return null;
+
+            return _rows[index];
+        }
+
+        public void Clear()
+        {
+            _rows.Clear();
+        }
     }
 }

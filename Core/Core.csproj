@@ -46,10 +46,11 @@
   <ItemGroup>
     <Compile Include="IDisplay.cs" />
     <Compile Include="IScreen.cs" />
-    <Compile Include="IScreenFilter.cs" />
+    <Compile Include="Renderer\LineBreakRenderer.cs" />
     <Compile Include="ScreenContent.cs" />
-    <Compile Include="ScreenFilterBlink.cs" />
-    <Compile Include="ScreenFilterScroll.cs" />
+    <Compile Include="Renderer\BlinkRenderer.cs" />
+    <Compile Include="Renderer\ScrollRenderer.cs" />
+    <Compile Include="Screens\AlbumScreen.cs" />
     <Compile Include="Screens\GenericScreen.cs" />
     <Compile Include="Screens\MainScreen.cs" />
     <Compile Include="ScreenManager.cs" />

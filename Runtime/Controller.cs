@@ -110,7 +110,7 @@ namespace Jukebox.Runtime
             Do(dev => dev.SetVolume(volume));
 
             // set display
-            SetLcdText($"Volume {(int)(percentage * 100)}%", "", new TimeSpan(0, 0, 0, 2));
+            SetLcdText(new[] { $"Volume {(int)(percentage * 100)}%" }, new TimeSpan(0, 0, 0, 2));
         }
 
         public void Shutdown()
@@ -134,7 +134,7 @@ namespace Jukebox.Runtime
         {
             log.Info(m => m("Play by tag id '{0}'", id));
 
-            // ignore if its same as current tag
+            // ignore if already playing
             if (_currentAlbumId == id)
             {
                 log.Debug(m => m("Ignore tag because its already playing"));
@@ -144,9 +144,6 @@ namespace Jukebox.Runtime
 
             // play by id
             _player.Play(id);
-
-            // remember current tag
-            _currentAlbumId = id;
         }
 
         public void ProcessCycle()
@@ -160,6 +157,14 @@ namespace Jukebox.Runtime
                 _mainScreen.Reset();
 
                 _currentSongId = PlayerStatus.SongId;
+            }
+
+            // has album changes
+            if (_currentAlbumId != PlayerStatus.TagId)
+            {
+
+
+                _currentAlbumId = PlayerStatus.TagId;
             }
 
             // update main screen
@@ -186,7 +191,7 @@ namespace Jukebox.Runtime
 
             _currentAlbumId = state.TagId;
 
-            SetLcdText("Hallo Noah", "", new TimeSpan(0, 0, 2));
+            SetLcdText(new[] { "Hallo Noah" }, new TimeSpan(0, 0, 2));
 
             _initalized = true;
         }
@@ -205,11 +210,13 @@ namespace Jukebox.Runtime
             }
         }
 
-        private void SetLcdText(string line1, string line2, TimeSpan? timeout = null)
+        private void SetLcdText(IEnumerable<string> content, TimeSpan? timeout = null)
         {
-            log.Debug(m => m("Update LCD (line1: '{0}', line2: '{1}', timeout: {2}", line1, line2, timeout));
+            var screenContent = new ScreenContent(content);
 
-            Do(device => device.ShowScreen(new GenericScreen(line1, line2), timeout));
+            log.Debug(m => m("Update LCD (line1: '{0}', line2: '{1}', timeout: {2}", screenContent.GetRow(0), screenContent.GetRow(1), timeout));
+
+            Do(device => device.ShowScreen(new GenericScreen(screenContent), timeout));
         }
 
         private void UpdatePlayerStatus()

@@ -2,6 +2,7 @@
 using System.Threading;
 using Common.Logging;
 using Jukebox.Core;
+using Jukebox.Core.Renderer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Test
@@ -21,7 +22,7 @@ namespace Test
         public void ScreenScrollFilter()
         {
             var end = DateTime.Now.Add(new TimeSpan(0, 0, 0, 30));
-            var filter = new ScreenFilterScroll(new TimeSpan(0, 0, 0, 0, 100), new TimeSpan(0, 0, 3));
+            var filter = new ScrollRenderer(new TimeSpan(0, 0, 0, 0, 100), new TimeSpan(0, 0, 3));
             var display = new MockDisplay();
             var content = "Das ist ein langer Text der zum Testen dienen soll und nichts sinnvolles enthält";
 

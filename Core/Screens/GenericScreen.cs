@@ -8,26 +8,21 @@ namespace Jukebox.Core.Screens
 {
     public class GenericScreen : IScreen
     {
-        public const byte LcdCharacterPlay = 0x0;
-        public const byte LcdCharacterPause = 0x1;
-        public const byte LcdCharacterStop = 0x2;
+        private readonly ScreenContent _content;
 
-        private string _line1;
-        private string _line2;
-
-        public GenericScreen(string line1, string line2)
+        public GenericScreen(IEnumerable<string> rows)
         {
-            _line1 = line1;
-            _line2 = line2;
+            _content = new ScreenContent(rows);
+        }
+
+        public GenericScreen(ScreenContent content)
+        {
+            _content = content;
         }
 
         public ScreenContent Render(IDisplay display)
         {
-            return new ScreenContent
-            {
-                Line1 = _line1,
-                Line2 = _line2
-            };
+            return _content;
         }
     }
 }

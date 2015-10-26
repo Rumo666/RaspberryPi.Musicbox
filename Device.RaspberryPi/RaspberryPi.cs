@@ -64,7 +64,7 @@ namespace Jukebox.Device.RaspberryPi
             // render display
             var screen = _screenManager.GetCurrentScreen();
             var content = screen.Render(_lcdConnection);
-            _lcdConnection.UpdateDisplay(content.Line1, content.Line2);
+            _lcdConnection.UpdateDisplay(content.GetRow(0), content.GetRow(1));
         }
 
         public void ShowScreen(IScreen screen, TimeSpan? timeout)

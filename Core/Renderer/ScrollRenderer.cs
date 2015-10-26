@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Jukebox.Core
+namespace Jukebox.Core.Renderer
 {
-    public class ScreenFilterScroll : IScreenFilter
+    public class ScrollRenderer
     {
         private int _position;
         private DateTime _lastPositionChange;
         private int _scrollDirection;
 
-        public ScreenFilterScroll(TimeSpan speed, TimeSpan? pause = null)
+        public ScrollRenderer(TimeSpan speed, TimeSpan? pause = null)
         {
             Speed = speed;
             Pause = pause ?? new TimeSpan(0);
