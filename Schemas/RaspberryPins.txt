@@ -1,15 +1,18 @@
-PIN		Description						Connector
-----------------------------------------------------------------------------------
-#19		Poti - SPI MOSI					4. rechts
-#21		Poti - SPI MSIO					3. rechts
-#23		Poti - SPI CLK					2. rechts
-#24		Poti - SPI Channel				1. links
+
+Rasberry Pi ===============================================================
+
+Pin		Description						Connector
+------------------------------------------------------------------
+#19		MCP3202 - SPI MOSI				Breadboard C5
+#21		MCP3202 - SPI MSIO				Breadboard C6
+#23		MCP3202 - SPI CLK				Breadboard C7
+#24		MCP3202 - SPI Channel			Breadboard C4
 
 #12		Button Play/Pause
 #16		Button Previous Track
 #18		Button Next Track
 
-#10		RFID - UART Rx					Pin nach Wiederstand
+#10		RFID - UART Rx					Breadboard A1
 
 #31		LCD - Data DB4					HD44780 #11
 #33		LCD - Data DB5					HD44780 #12
@@ -18,17 +21,19 @@ PIN		Description						Connector
 #40		LCD - RS (Register Select)		HD44780 #4
 #38		LCD - Clock/E					HD44780 #6
 
-#03		Amp - SDA						SDA (4. links)
-#05		Amp - SCL						SCL (5. links)
-#36		Amp - Shutdown					SHDN (7. links)
+#03		Amp - SDA						Amp SDA (4. links)
+#05		Amp - SCL						Amp SCL (5. links)
+#36		Amp - Shutdown					Breadboard B3
 
-#11		ATXRaspi - IN					Boot OK (set high after boot)
-#13		ATXRaspi - OUT					Shutdown Signal ("sudo poweroff" when high)
+#11		ATXRaspi - IN					ATXRaspi Boot OK (set high after boot)
+#13		ATXRaspi - OUT					ATXRaspi Shutdown Signal ("sudo poweroff" when high)
 
 
 
-HD44780
------------------------------------------
+HD44780 ===============================================================
+
+Pin		Desc		Connector
+-------------------------------------------
 #1		Vss			GND
 #2		Vcc			+5V
 #3		Vee			GND
@@ -42,3 +47,36 @@ HD44780
 #14		DB7			GPIO #37
 #15		LED+		Nach Wiederstand +5V
 #16		LED-		GND
+
+
+Breadboard ============================================================
+
+ _____________________________________________________
+													- (GND)
+													+ (3.3V)
+
+      A1			B1 B2 B2			C1 C2 C3 C4
+	
+	-----------------------------------------------  
+	  
+					D1
+										C5 C6 C7 C8
+										
+													+ (5V)
+ _____________________________________________________
+
+Pin		Desc						Connector
+--------------------------------------------------
+A1		RFID - UART Rx				GPIO #10
+
+B1		Amp Shutdown				Amp SHDN (7. links)
+B2		+5V							DC-DC Convertor +5V
+B3		Amp Shutdown				GPIO #36
+
+C3		MCP3202 - Channel 0			Potentiometer
+C5		MCP3202 - SPI MOSI			GPIO #19 
+C6		MCP3202 - SPI MSIO			GPIO #21
+C7		MCP3202 - SPI CLK			GPIO #23
+C4		MCP3202 - SPI Channel		GPIO #24
+
+D1		LCD Display Backlight (+5V)	HD44780 #15
