@@ -43,6 +43,9 @@ namespace Jukebox.Device.RaspberryPi
 
             // wake up amp
             _ampConnection.SetShutdownState(false);
+
+            // set amp volume to 0 (because amp its turned to 100% output after wakeup)
+            _ampConnection.SetVolume(0);
         }
 
         public void Shutdown()
