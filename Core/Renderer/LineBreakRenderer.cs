@@ -30,6 +30,10 @@ namespace Jukebox.Core.Renderer
             //}
 
             var output = new ScreenContent();
+
+            if (string.IsNullOrEmpty(content))
+                return output;
+
             var pos = 0;
 
             for (int row = 0; row < display.Rows; row++)
