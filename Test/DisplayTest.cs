@@ -19,12 +19,13 @@ namespace Test
         private static readonly ILog log = LogManager.GetLogger<DisplayTest>();
 
         [TestMethod]
-        public void ScrollRenderer()
+        public void RendererScroll()
         {
             var end = DateTime.Now.Add(new TimeSpan(0, 0, 0, 30));
-            var filter = new ScrollRenderer(new TimeSpan(0, 0, 0, 0, 100), new TimeSpan(0, 0, 3));
+            var filter = new ScrollRenderer(ScrollRenderer.Modus.Infinite, new TimeSpan(0, 0, 0, 0, 100), new TimeSpan(0, 0, 3));
             var display = new MockDisplay();
             var content = "Das ist ein langer Text der zum Testen dienen soll und nichts sinnvolles enthält";
+            //var content = "Das ist ein langer Text";
 
             while (true)
             {
@@ -41,7 +42,7 @@ namespace Test
         }
 
         [TestMethod]
-        public void LineBreakRenderer()
+        public void RendererLineBreak()
         {
             var filter = new LineBreakRenderer();
             var display = new MockDisplay();
