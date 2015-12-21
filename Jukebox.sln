@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Runtime", "Runtime\Runtime.csproj", "{0B3B9945-5A49-4746-AF6C-3D3D5D3F5091}"
 EndProject
@@ -41,6 +41,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Schemas", "Schemas", "{85A3
 		Schemas\Jukebox_Steckplatine.png = Schemas\Jukebox_Steckplatine.png
 		Schemas\MAX9744.pdf = Schemas\MAX9744.pdf
 		Schemas\MCP3202_21034D.pdf = Schemas\MCP3202_21034D.pdf
+		Schemas\Optokoppler_817.pdf = Schemas\Optokoppler_817.pdf
 		Schemas\RaspberryPins.txt = Schemas\RaspberryPins.txt
 		Schemas\RFID_RDM6300.pdf = Schemas\RFID_RDM6300.pdf
 	EndProjectSection

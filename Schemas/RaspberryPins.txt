@@ -28,6 +28,8 @@ Pin		Description						Connector
 #11		ATXRaspi - IN					ATXRaspi Boot OK (set high after boot)
 #13		ATXRaspi - OUT					ATXRaspi Shutdown Signal ("sudo poweroff" when high)
 
+#32		ATXRaspi Button Emulation		Breadboard E5
+
 
 
 HD44780 ===============================================================
@@ -55,13 +57,13 @@ Breadboard ============================================================
 													- (GND)
 													+ (3.3V)
 
-      A1			B1 B2 B3			C1 C2 C3 C4
+       A1   		B1 B2 B3			C1 C2 C3 C4
 	
 	-----------------------------------------------  
 	  
-					D1
-										C5 C6 C7 C8
-										
+	E1 E2  			D1
+	E3 E4 E5							C5 C6 C7 C8
+	   								
 													+ (5V)
  _____________________________________________________
 
@@ -80,3 +82,9 @@ C7		MCP3202 - SPI CLK			GPIO #23
 C4		MCP3202 - SPI Channel		GPIO #24
 
 D1		LCD Display Backlight (+5V)	HD44780 #15
+
+E1		GND							ATXRaspi Button (Innen)
+E2		+5V							ATXRaspi Button (Aussen)
+E3									Ein- / Aus Button
+E4									Ein- / Aus Button
+E5		Button Trigger				GPIO #32
