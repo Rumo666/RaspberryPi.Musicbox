@@ -113,7 +113,7 @@ namespace Jukebox.Runtime
             Do(dev => dev.SetVolume(volume));
 
             // set display
-            SetLcdText(new[] { $"Volume {(int)(percentage * 100)}%" }, new TimeSpan(0, 0, 0, 2));
+            //SetLcdText(new[] { $"Volume {(int)(percentage * 100)}%" }, new TimeSpan(0, 0, 0, 2));
         }
 
         public void Shutdown()
