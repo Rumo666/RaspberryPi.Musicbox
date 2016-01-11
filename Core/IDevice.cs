@@ -13,5 +13,6 @@ namespace Jukebox.Core
         void SetVolume(byte value);
         void Initalize();
         void Shutdown();
+        void InitShutdown();
     }
 }

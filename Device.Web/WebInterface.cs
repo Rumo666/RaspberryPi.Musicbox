@@ -61,6 +61,11 @@ namespace Jukebox.Device.Web
             // nothing to do
         }
 
+        public void InitShutdown()
+        {
+            // nothing to do
+        }
+
         #endregion
 
         #region IDisposable

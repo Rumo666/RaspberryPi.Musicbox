@@ -23,10 +23,13 @@ namespace Jukebox.Runtime
         private bool _initalized;
         private readonly MainScreen _mainScreen = new MainScreen();
         private PlayerStatus _playerStatus;
+        private DateTime _lastPlayingTime;
+        private readonly TimeSpan _maxIdleTime = new TimeSpan(0, 5, 0);
 
         public Controller(IPlayer player)
         {
             _player = player;
+            _lastPlayingTime = DateTime.Now;
         }
 
         #region IController
@@ -172,6 +175,18 @@ namespace Jukebox.Runtime
             // update main screen
             _mainScreen.PlayerStatus = PlayerStatus;
             Do(device => device.ShowScreen(_mainScreen, null));
+
+            // set idle time
+            if (PlayerStatus.State == PlayerStatus.States.Play)
+                _lastPlayingTime = DateTime.Now;
+
+            // shutdown if idle timeout reached
+            if (_lastPlayingTime + _maxIdleTime < DateTime.Now)
+            {
+                log.Info("Reach idle timeout, init shutdown");
+
+                Do(device => device.InitShutdown());
+            }
 
             // process devices
             Do(device => device.ProcessCycle());

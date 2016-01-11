@@ -31,7 +31,7 @@ namespace Jukebox.Device.RaspberryPi
             _btnConnection = new ButtonConnection(controller);
             _rfidConnection = new RfidConnection();
             _ampConnection = new AmplifierConnection();
-            _raspiAtxConnection = new RaspiAtxConnection(controller);
+            _raspiAtxConnection = new RaspiAtxConnection(controller, driver);
         }
 
         #region IDevice
@@ -50,6 +50,9 @@ namespace Jukebox.Device.RaspberryPi
 
         public void Shutdown()
         {
+            // set on/off button to low
+            _raspiAtxConnection.SetOnOffButtonState(false);
+
             var process = new Process();
             process.StartInfo.FileName = "poweroff";
             process.Start();
@@ -78,6 +81,11 @@ namespace Jukebox.Device.RaspberryPi
         public void SetVolume(byte value)
         {
             _ampConnection.SetVolume(value);
+        }
+
+        public void InitShutdown()
+        {
+            _raspiAtxConnection.SetOnOffButtonState(true);
         }
 
         #endregion
