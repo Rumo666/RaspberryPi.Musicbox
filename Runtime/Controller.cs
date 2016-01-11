@@ -24,7 +24,7 @@ namespace Jukebox.Runtime
         private readonly MainScreen _mainScreen = new MainScreen();
         private PlayerStatus _playerStatus;
         private DateTime _lastPlayingTime;
-        private readonly TimeSpan _maxIdleTime = new TimeSpan(0, 5, 0);
+        private readonly TimeSpan _maxIdleTime = new TimeSpan(0, 1, 0);
 
         public Controller(IPlayer player)
         {
@@ -108,7 +108,7 @@ namespace Jukebox.Runtime
             var percentage = value / 255f;
             var volume = (byte)((_maxVolume - _minVolume) * percentage + _minVolume);
 
-            log.Info(m => m($"Set volume to {volume}"));
+            //log.Info(m => m($"Set volume to {volume}"));
 
             Do(dev => dev.SetVolume(volume));
 

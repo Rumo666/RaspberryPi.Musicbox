@@ -28,7 +28,11 @@ namespace Jukebox.Device.RaspberryPi.Connector
                 .OnStatusChanged(state =>
                 {
                     if (state)
+                    {
+                        log.Debug("Shutdown triggered by RaspiAtx");
+
                         controller.Shutdown();
+                    }
                 });
 
             // connect on/off button trigger pin
