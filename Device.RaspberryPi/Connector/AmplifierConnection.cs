@@ -34,7 +34,7 @@ namespace Jukebox.Device.RaspberryPi.Connector
         {
             var data = (byte)(value / 255f * 63);
 
-            //log.Debug(m => m("Set amplifier volume to {0}", data));
+            log.Debug(m => m("Set amplifier volume to {0}", data));
 
             _connection.WriteByte(data);
         }

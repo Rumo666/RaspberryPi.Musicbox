@@ -29,7 +29,7 @@ namespace Jukebox.Device.RaspberryPi.Connector
                 {
                     if (state)
                     {
-                        log.Debug("Shutdown triggered by RaspiAtx");
+                        log.Info(m => m("Shutdown triggered by RaspiAtx"));
 
                         controller.Shutdown();
                     }

@@ -110,7 +110,7 @@ namespace Jukebox.Runtime
             var percentage = value / 255f;
             var volume = (byte)((_maxVolume - _minVolume) * percentage + _minVolume);
 
-            //log.Info(m => m($"Set volume to {volume}"));
+            log.Debug(m => m($"Set volume to {volume}"));
 
             Do(dev => dev.SetVolume(volume));
 
@@ -142,8 +142,6 @@ namespace Jukebox.Runtime
             // ignore if already playing
             if (_currentAlbumId == id)
             {
-                //log.Debug(m => m("Ignore tag because its already playing"));
-
                 _player.PlayFirst();
 
                 return;
@@ -158,7 +156,7 @@ namespace Jukebox.Runtime
             // if last process cycle exceed 'maxIdleTimeout', the system seems slept
             if (_lastProcessCycle < DateTime.Now - _maxIdleTime)
             {
-                log.Debug("Last process cycle exceed idle timeout");
+                log.Info("Last process cycle exceed idle timeout");
 
                 // reset last playing time, to prevent imidiate shutdown, after sleep
                 _lastPlayingTime = DateTime.Now;
@@ -211,7 +209,7 @@ namespace Jukebox.Runtime
 
         public void Initalize(IEnumerable<IDevice> devices)
         {
-            log.Debug("Initalize");
+            log.Debug(m => m("Initalize"));
 
             _devices = devices;
 
