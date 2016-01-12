@@ -25,11 +25,13 @@ namespace Jukebox.Runtime
         private PlayerStatus _playerStatus;
         private DateTime _lastPlayingTime;
         private readonly TimeSpan _maxIdleTime = new TimeSpan(0, 1, 0);
+        private DateTime _lastProcessCycle;
 
         public Controller(IPlayer player)
         {
             _player = player;
             _lastPlayingTime = DateTime.Now;
+            _lastProcessCycle = DateTime.Now;
         }
 
         #region IController
@@ -151,6 +153,15 @@ namespace Jukebox.Runtime
 
         public void ProcessCycle()
         {
+            // if last process cycle exceed 'maxIdleTimeout', the system seems slept
+            if (_lastProcessCycle < DateTime.Now - _maxIdleTime)
+            {
+                log.Debug("Last process cycle exceed idle timeout");
+
+                // reset last playing time, to prevent imidiate shutdown, after sleep
+                _lastPlayingTime = DateTime.Now;
+            }
+
             // update player status
             UpdatePlayerStatus();
 
@@ -190,6 +201,8 @@ namespace Jukebox.Runtime
 
             // process devices
             Do(device => device.ProcessCycle());
+
+            _lastProcessCycle = DateTime.Now;
         }
 
         #endregion
