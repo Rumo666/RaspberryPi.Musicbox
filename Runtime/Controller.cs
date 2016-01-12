@@ -199,7 +199,7 @@ namespace Jukebox.Runtime
             // shutdown if idle timeout reached
             if (_lastPlayingTime + _maxIdleTime < DateTime.Now)
             {
-                log.Info("Reach idle timeout, init shutdown");
+                log.Info(m => m($"Reach idle timeout, init shutdown (lpt: {_lastPlayingTime}, lpc: {_lastProcessCycle})"));
 
                 Do(device => device.InitShutdown());
             }
