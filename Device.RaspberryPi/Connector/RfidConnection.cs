@@ -75,10 +75,14 @@ namespace Jukebox.Device.RaspberryPi.Connector
                 log.Debug(m => m("Invalid RFID tag checksum (calculated: {0}, recived: {1})", checksum, _buffer[10]));
                 return;
             }
-            
+
             // check min intervall between read
             if (_lastRead > DateTime.Now - _minReadIntervall)
+            {
+                log.Debug(m => m("Ignore, becuase min intervall is not reached"));
+
                 return;
+            }
 
             // mark last read
             _lastRead = DateTime.Now;
@@ -89,25 +93,6 @@ namespace Jukebox.Device.RaspberryPi.Connector
             log.Info(m => m("Detect RFID tag '{0}'", number));
 
             action.Invoke(number);
-
-            //if (cnt < 10)
-            //{
-            //    tag += BitConverter.ToChar(data, 0);
-            //    if (cnt > 3)
-            //        tagBuffer[cnt - 4] = data[0];
-            //    cnt++;
-            //}
-            //else
-            //{
-            //    if (!tagRead)
-            //    {
-            //        {
-            //            tag = tag.Substring(4);
-            //            var num = int.Parse(tag, NumberStyles.HexNumber);
-            //            Console.WriteLine("Tag: {0} - {1}", tag, num);
-            //        }
-            //    }
-            //}
         }
 
         public void Dispose()

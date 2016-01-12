@@ -24,7 +24,7 @@ namespace Jukebox.Runtime
         private readonly MainScreen _mainScreen = new MainScreen();
         private PlayerStatus _playerStatus;
         private DateTime _lastPlayingTime;
-        private readonly TimeSpan _maxIdleTime = new TimeSpan(0, 1, 0);
+        private readonly TimeSpan _maxIdleTime = new TimeSpan(0, 5, 0);
         private DateTime _lastProcessCycle;
 
         public Controller(IPlayer player)
@@ -139,9 +139,14 @@ namespace Jukebox.Runtime
         {
             log.Info(m => m("Play by tag id '{0}'", id));
 
-            // ignore if already playing
+            // is current album already playing
             if (_currentAlbumId == id)
             {
+                // don't go to first track, if playing recently started
+                if (PlayerStatus.TrackNumber == 1 && PlayerStatus.CurrentPosition < new TimeSpan(0, 0, 10))
+                    return;
+                
+                // go back to first track
                 _player.PlayFirst();
 
                 return;
@@ -158,7 +163,7 @@ namespace Jukebox.Runtime
             {
                 log.Info("Last process cycle exceed idle timeout");
 
-                // reset last playing time, to prevent imidiate shutdown, after sleep
+                // reset last playing time, to prevent imediate shutdown
                 _lastPlayingTime = DateTime.Now;
             }
 

@@ -21,14 +21,21 @@ namespace Jukebox.Core.Screens
 
         public ScreenContent Render(IDisplay display)
         {
+            // play state character
             var state = (PlayerStatus.State == PlayerStatus.States.Play
                 ? ScreenContent.LcdCharacterPlay
                 : PlayerStatus.State == PlayerStatus.States.Pause
                     ? ScreenContent.LcdCharacterPause
                     : ScreenContent.LcdCharacterStop);
 
+            // show current time only, in play or pause modus
+            var time = (PlayerStatus.State == PlayerStatus.States.Stop
+                ? ""
+                : $"{(int)PlayerStatus.CurrentPosition.TotalMinutes:00}:{PlayerStatus.CurrentPosition.Seconds:00}");
+
+            // build output
             _content.Clear();
-            _content.AppendRow($"{(char)state} {PlayerStatus.TrackNumber}/{PlayerStatus.PlaylistLength} {(int)PlayerStatus.CurrentPosition.TotalMinutes:00}:{PlayerStatus.CurrentPosition.Seconds:00}");
+            _content.AppendRow($"{(char)state} {PlayerStatus.TrackNumber}/{PlayerStatus.PlaylistLength} {time}");
             _content.AppendRow(_scrollRenderer.Render($"{PlayerStatus.Title}", display));
 
             return _content;
