@@ -84,7 +84,7 @@ namespace Jukebox.Runtime
 
             log.Info(m => m("Play next song"));
 
-            _player.Next();
+            _player.PlayNext();
         }
 
         public void PlayPrevious()
@@ -94,7 +94,7 @@ namespace Jukebox.Runtime
 
             log.Info(m => m("Play previous song"));
 
-            _player.Previous();
+            _player.PlayPrevious();
         }
 
         public void SetVolume(byte value)
@@ -142,7 +142,9 @@ namespace Jukebox.Runtime
             // ignore if already playing
             if (_currentAlbumId == id)
             {
-                log.Debug(m => m("Ignore tag because its already playing"));
+                //log.Debug(m => m("Ignore tag because its already playing"));
+
+                _player.PlayFirst();
 
                 return;
             }

@@ -33,7 +33,7 @@ namespace Jukebox.Player.Mpc
 
         #region IPlayer
 
-        public void Next()
+        public void PlayNext()
         {
             log.Debug(m => m("Send MPD command: next"));
 
@@ -43,7 +43,7 @@ namespace Jukebox.Player.Mpc
             }
         }
 
-        public void Previous()
+        public void PlayPrevious()
         {
             log.Debug(m => m("Send MPD command: previous"));
 
@@ -134,6 +134,7 @@ namespace Jukebox.Player.Mpc
                     case MpdState.Pause:
                         state = PlayerStatus.States.Pause;
                         break;
+
                     case MpdState.Stop:
                         state = PlayerStatus.States.Stop;
                         break;
@@ -152,6 +153,19 @@ namespace Jukebox.Player.Mpc
                     CurrentPosition = new TimeSpan(0, 0, status.TimeElapsed),
                     SongId = song?.Id ?? 0
                 };
+            }
+        }
+
+        public void PlayFirst()
+        {
+            lock (_lock)
+            {
+                var tracks = _mpc.PlaylistId();
+
+                if (tracks.Count > 0)
+                {
+                    _mpc.PlayId(tracks[0].Id);
+                }
             }
         }
 

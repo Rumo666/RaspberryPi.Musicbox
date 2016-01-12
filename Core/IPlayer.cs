@@ -8,8 +8,9 @@ namespace Jukebox.Core
 {
     public interface IPlayer
     {
-        void Next();
-        void Previous();
+        void PlayNext();
+        void PlayPrevious();
+        void PlayFirst();
         void Stop();
         void Play();
         void Play(string id);

@@ -31,12 +31,12 @@ namespace Jukebox.Player.Dummy
 
         #region IPlayer
 
-        public void Next()
+        public void PlayNext()
         {
             _index = Math.Min(_index + 1, _tracks.Count - 1);
         }
 
-        public void Previous()
+        public void PlayPrevious()
         {
             _index = Math.Max(_index - 1, 0);
         }
@@ -78,6 +78,10 @@ namespace Jukebox.Player.Dummy
                 Artist = track.Interpret,
                 Title = track.Title
             };
+        }
+
+        public void PlayFirst()
+        {
         }
 
         #endregion
