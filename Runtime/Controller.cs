@@ -158,13 +158,15 @@ namespace Jukebox.Runtime
 
         public void ProcessCycle()
         {
-            // if last process cycle exceed 'maxIdleTimeout', the system seems slept
-            if (_lastProcessCycle < DateTime.Now - _maxIdleTime)
+            var now = DateTime.Now;
+
+            // if last process cycle exceed 'maxIdleTimeout', the system time has adjusted
+            if (_lastProcessCycle < now - _maxIdleTime)
             {
                 log.Info("Last process cycle exceed idle timeout");
 
                 // reset last playing time, to prevent imediate shutdown
-                _lastPlayingTime = DateTime.Now;
+                _lastPlayingTime = now;
             }
 
             // update player status
@@ -194,10 +196,10 @@ namespace Jukebox.Runtime
 
             // set idle time
             if (PlayerStatus.State == PlayerStatus.States.Play)
-                _lastPlayingTime = DateTime.Now;
+                _lastPlayingTime = now;
 
             // shutdown if idle timeout reached
-            if (_lastPlayingTime + _maxIdleTime < DateTime.Now)
+            if (_lastPlayingTime + _maxIdleTime < now)
             {
                 log.Info(m => m($"Reach idle timeout, init shutdown (lpt: {_lastPlayingTime}, lpc: {_lastProcessCycle})"));
 
@@ -207,7 +209,7 @@ namespace Jukebox.Runtime
             // process devices
             Do(device => device.ProcessCycle());
 
-            _lastProcessCycle = DateTime.Now;
+            _lastProcessCycle = now;
         }
 
         #endregion
